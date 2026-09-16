@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ShoppingCart, User, Menu } from "lucide-react";
+import { ShoppingCart, User } from "lucide-react";
 import Container from "@/components/ui/Container";
+import MobileMenu from "./MobileMenu";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -71,13 +72,7 @@ export default function Header() {
           </Link>
 
           {/* Mobile Menu */}
-          <button
-            type="button"
-            aria-label="Open menu"
-            className="flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 md:hidden"
-          >
-            <Menu className="h-5 w-5" />
-          </button>
+          <MobileMenu />
         </div>
       </Container>
     </header>
