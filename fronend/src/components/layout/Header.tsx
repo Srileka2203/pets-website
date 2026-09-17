@@ -23,11 +23,11 @@ export default function Header() {
           className="flex shrink-0 items-center gap-3"
         >
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-900">
-            <span className="text-base font-bold text-white">P</span>
+            <span className="text-base font-bold text-white">TT</span>
           </div>
 
           <span className="text-xl font-bold tracking-tight text-gray-900">
-            Pet Shop
+            Tails & Tales
           </span>
         </Link>
 

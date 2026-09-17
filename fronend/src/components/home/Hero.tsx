@@ -11,6 +11,7 @@ export default function Hero() {
     <section className="relative overflow-hidden bg-gray-50">
       <Container>
         <div className="grid min-h-[650px] items-center gap-12 py-16 lg:grid-cols-2 lg:gap-16 lg:py-20">
+          
           {/* Left Content */}
           <div className="relative z-10 max-w-2xl">
             {/* Eyebrow */}
@@ -52,9 +53,9 @@ export default function Hero() {
           {/* Right Image Gallery */}
           <div className="relative z-10 flex justify-center lg:justify-end">
             <ImageGallery
-              images={heroImages}
-              alt=""
               variant="hero"
+              images={heroImages}
+              alt="Pet companion"
             />
           </div>
         </div>

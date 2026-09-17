@@ -38,11 +38,11 @@ export default function Footer() {
               aria-label="Pet Shop Home"
             >
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white">
-                <span className="text-base font-bold text-gray-950">P</span>
+                <span className="text-base font-bold text-gray-950">TT</span>
               </div>
 
               <span className="text-xl font-bold tracking-tight text-white">
-                Pet Shop
+                Tails & Tales
               </span>
             </Link>
 
