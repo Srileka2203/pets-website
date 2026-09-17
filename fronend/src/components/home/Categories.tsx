@@ -33,7 +33,7 @@ interface Category {
   description: string;
   count: string;
   href: string;
-  image: string;
+//   image: string;
 }
 
 const categories: Category[] = [
@@ -42,42 +42,42 @@ const categories: Category[] = [
     description: "Loyal friends for a happier you.",
     count: "50+ pets",
     href: "/categories/dogs",
-    image: "/images/pets/dogs/dog-1.jpg",
+    // image: "/images/pets/dogs/dog-1.jpg",
   },
   {
     name: "Cats",
     description: "Playful, independent and full of love.",
     count: "40+ pets",
     href: "/categories/cats",
-    image: "/images/pets/cats/cat-1.jpg",
+    // image: "/images/pets/cats/cat-1.jpg",
   },
   {
     name: "Birds",
     description: "Colorful companions to brighten your home.",
     count: "25+ pets",
     href: "/categories/birds",
-    image: "/images/pets/birds/bird-1.jpg",
+    // image: "/images/pets/birds/bird-1.jpg",
   },
   {
     name: "Rabbits",
     description: "Gentle, adorable and fun to be around.",
     count: "20+ pets",
     href: "/categories/rabbits",
-    image: "/images/pets/rabbits/rabbit-1.jpg",
+    // image: "/images/pets/rabbits/rabbit-1.jpg",
   },
   {
     name: "Fish",
     description: "Peaceful beauty for a calming space.",
     count: "30+ pets",
     href: "/categories/fish",
-    image: "/images/pets/fish/fish-1.jpg",
+    // image: "/images/pets/fish/fish-1.jpg",
   },
   {
     name: "Hamsters",
     description: "Small pets with big personalities.",
     count: "15+ pets",
     href: "/categories/hamsters",
-    image: "/images/pets/hamsters/hamster-1.jpg",
+    // image: "/images/pets/hamsters/hamster-1.jpg",
   },
 ];
 
@@ -314,7 +314,7 @@ export default function Categories() {
                   </div>
 
                   {/* Pet Image */}
-                  <div className="absolute bottom-0 right-0 z-[5] h-[205px] w-[205px]">
+                  {/* <div className="absolute bottom-0 right-0 z-[5] h-[205px] w-[205px]">
                     <Image
                       src={category.image}
                       alt={category.name}
@@ -322,7 +322,7 @@ export default function Categories() {
                       sizes="205px"
                       className="object-contain grayscale transition-transform duration-500 group-hover:scale-105"
                     />
-                  </div>
+                  </div> */}
                 </article>
               </Link>
             );
