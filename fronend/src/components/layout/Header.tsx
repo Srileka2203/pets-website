@@ -14,13 +14,13 @@ const navigation = [
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-gray-50/95 backdrop-blur">
       <Container className="flex h-[72px] items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-3"
           aria-label="Pet Shop Home"
+          className="flex shrink-0 items-center gap-3"
         >
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-900">
             <span className="text-base font-bold text-white">P</span>
@@ -33,14 +33,14 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav
-          className="hidden items-center gap-7 md:flex"
+          className="hidden items-center gap-8 md:flex"
           aria-label="Main navigation"
         >
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+              className="text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"
             >
               {item.name}
             </Link>
@@ -53,7 +53,7 @@ export default function Header() {
           <Link
             href="/cart"
             aria-label="Shopping cart"
-            className="relative flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-colors duration-200 hover:bg-gray-200 hover:text-gray-900"
           >
             <ShoppingCart className="h-[18px] w-[18px]" />
 
@@ -66,7 +66,7 @@ export default function Header() {
           <Link
             href="/account"
             aria-label="My account"
-            className="hidden h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 sm:flex"
+            className="hidden h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-colors duration-200 hover:bg-gray-200 hover:text-gray-900 sm:flex"
           >
             <User className="h-[18px] w-[18px]" />
           </Link>
