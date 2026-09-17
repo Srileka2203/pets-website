@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -18,6 +17,7 @@ import {
 import { useState } from "react";
 
 import Container from "@/components/ui/Container";
+import Card from "@/components/ui/Card";
 
 type CategoryType =
   | "All"
@@ -33,7 +33,6 @@ interface Category {
   description: string;
   count: string;
   href: string;
-//   image: string;
 }
 
 const categories: Category[] = [
@@ -42,42 +41,36 @@ const categories: Category[] = [
     description: "Loyal friends for a happier you.",
     count: "50+ pets",
     href: "/categories/dogs",
-    // image: "/images/pets/dogs/dog-1.jpg",
   },
   {
     name: "Cats",
     description: "Playful, independent and full of love.",
     count: "40+ pets",
     href: "/categories/cats",
-    // image: "/images/pets/cats/cat-1.jpg",
   },
   {
     name: "Birds",
     description: "Colorful companions to brighten your home.",
     count: "25+ pets",
     href: "/categories/birds",
-    // image: "/images/pets/birds/bird-1.jpg",
   },
   {
     name: "Rabbits",
     description: "Gentle, adorable and fun to be around.",
     count: "20+ pets",
     href: "/categories/rabbits",
-    // image: "/images/pets/rabbits/rabbit-1.jpg",
   },
   {
     name: "Fish",
     description: "Peaceful beauty for a calming space.",
     count: "30+ pets",
     href: "/categories/fish",
-    // image: "/images/pets/fish/fish-1.jpg",
   },
   {
     name: "Hamsters",
     description: "Small pets with big personalities.",
     count: "15+ pets",
     href: "/categories/hamsters",
-    // image: "/images/pets/hamsters/hamster-1.jpg",
   },
 ];
 
@@ -175,7 +168,10 @@ export default function Categories() {
           aria-hidden="true"
           className="absolute right-8 top-16 hidden rotate-12 text-gray-300 lg:block"
         >
-          <PawPrint className="h-12 w-12" strokeWidth={1.5} />
+          <PawPrint
+            className="h-12 w-12"
+            strokeWidth={1.5}
+          />
         </div>
 
         {/* Decorative Text */}
@@ -234,21 +230,61 @@ export default function Categories() {
                 href={category.href}
                 className="group"
               >
-                <article className="relative h-[250px] overflow-hidden rounded-[24px] border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-md">
+                <Card
+                  className="
+                    relative
+                    h-[250px]
+                    overflow-hidden
+                    rounded-[24px]
+                    bg-white
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:border-gray-300
+                    hover:shadow-md
+                  "
+                >
                   {/* Soft Image Circle */}
-                  <div className="absolute bottom-[-35px] right-[-10px] h-[205px] w-[205px] rounded-full bg-gray-100" />
-
-                  {/* Small decorative shape */}
                   <div
                     aria-hidden="true"
-                    className="absolute right-[150px] top-8 h-2 w-2 rounded-full bg-gray-300"
+                    className="
+                      absolute
+                      bottom-[-35px]
+                      right-[-10px]
+                      h-[205px]
+                      w-[205px]
+                      rounded-full
+                      bg-gray-100
+                    "
                   />
 
-                  {/* Decorative doodle */}
+                  {/* Small Decorative Shape */}
+                  <div
+                    aria-hidden="true"
+                    className="
+                      absolute
+                      right-[150px]
+                      top-8
+                      h-2
+                      w-2
+                      rounded-full
+                      bg-gray-300
+                    "
+                  />
+
+                  {/* Decorative Doodle */}
                   {index % 3 === 0 && (
                     <div
                       aria-hidden="true"
-                      className="absolute left-[210px] top-8 hidden rotate-[-20deg] text-gray-400 sm:block"
+                      className="
+                        absolute
+                        left-[210px]
+                        top-8
+                        hidden
+                        rotate-[-20deg]
+                        text-gray-400
+                        sm:block
+                      "
                     >
                       <Sparkles
                         className="h-6 w-6"
@@ -260,7 +296,12 @@ export default function Categories() {
                   {index % 3 === 1 && (
                     <div
                       aria-hidden="true"
-                      className="absolute right-7 top-7 text-gray-400"
+                      className="
+                        absolute
+                        right-7
+                        top-7
+                        text-gray-400
+                      "
                     >
                       <Heart
                         className="h-5 w-5"
@@ -272,7 +313,13 @@ export default function Categories() {
                   {index % 3 === 2 && (
                     <div
                       aria-hidden="true"
-                      className="absolute right-8 top-7 rotate-12 text-gray-400"
+                      className="
+                        absolute
+                        right-8
+                        top-7
+                        rotate-12
+                        text-gray-400
+                      "
                     >
                       <PawPrint
                         className="h-5 w-5"
@@ -284,46 +331,72 @@ export default function Categories() {
                   {/* Card Content */}
                   <div className="relative z-10 flex h-full flex-col justify-between p-7">
                     <div className="max-w-[185px]">
-                      <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-700">
+                      {/* Category Icon */}
+                      <div
+                        className="
+                          mb-4
+                          flex
+                          h-9
+                          w-9
+                          items-center
+                          justify-center
+                          rounded-full
+                          bg-gray-100
+                          text-gray-700
+                        "
+                      >
                         <CategoryIcon
                           className="h-5 w-5"
                           strokeWidth={1.7}
                         />
                       </div>
 
+                      {/* Category Name */}
                       <h3 className="text-2xl font-bold tracking-tight text-gray-900">
                         {category.name}
                       </h3>
 
+                      {/* Description */}
                       <p className="mt-2 text-sm leading-6 text-gray-600">
                         {category.description}
                       </p>
 
+                      {/* Count */}
                       <p className="mt-3 text-sm font-medium text-gray-500">
                         {category.count}
                       </p>
                     </div>
 
                     {/* Arrow Button */}
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-900 transition-all duration-300 group-hover:bg-gray-900 group-hover:text-white">
+                    <div
+                      className="
+                        flex
+                        h-10
+                        w-10
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-gray-100
+                        text-gray-900
+                        transition-all
+                        duration-300
+                        group-hover:bg-gray-900
+                        group-hover:text-white
+                      "
+                    >
                       <ArrowRight
-                        className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5"
+                        className="
+                          h-5
+                          w-5
+                          transition-transform
+                          duration-300
+                          group-hover:translate-x-0.5
+                        "
                         strokeWidth={1.8}
                       />
                     </div>
                   </div>
-
-                  {/* Pet Image */}
-                  {/* <div className="absolute bottom-0 right-0 z-[5] h-[205px] w-[205px]">
-                    <Image
-                      src={category.image}
-                      alt={category.name}
-                      fill
-                      sizes="205px"
-                      className="object-contain grayscale transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div> */}
-                </article>
+                </Card>
               </Link>
             );
           })}

@@ -1,13 +1,10 @@
 import Link from "next/link";
+
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import ImageGallery from "@/components/ui/ImageGallery";
 
-const heroImages = [
-  "/images/pets/cats/cat-1.jpg",
-  "/images/pets/dogs/dog-1.jpg",
-  "/images/pets/cats/cat-2.jpg",
-];
+const heroImages: string[] = [];
 
 export default function Hero() {
   return (
@@ -50,36 +47,6 @@ export default function Hero() {
                 </Button>
               </Link>
             </div>
-
-            {/* Trust Information */}
-            {/* <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-gray-200 pt-6">
-              <div>
-                <p className="text-lg font-semibold text-gray-900">
-                  100+
-                </p>
-                <p className="text-sm text-gray-500">
-                  Loving Pets
-                </p>
-              </div>
-
-              <div>
-                <p className="text-lg font-semibold text-gray-900">
-                  6+
-                </p>
-                <p className="text-sm text-gray-500">
-                  Pet Categories
-                </p>
-              </div>
-
-              <div>
-                <p className="text-lg font-semibold text-gray-900">
-                  Trusted
-                </p>
-                <p className="text-sm text-gray-500">
-                  Pet Community
-                </p>
-              </div>
-            </div> */}
           </div>
 
           {/* Right Image Gallery */}

@@ -1,7 +1,16 @@
+"use client";
+
 import Link from "next/link";
-import { ArrowRight, Heart, MapPin, Plus, Star } from "lucide-react";
+import {
+  ArrowRight,
+  Heart,
+  MapPin,
+  Plus,
+  Star,
+} from "lucide-react";
 
 import Container from "@/components/ui/Container";
+import Card from "@/components/ui/Card";
 
 const pets = [
   {
@@ -84,11 +93,13 @@ export default function FeaturedPets() {
             </p>
           </div>
 
+          {/* Desktop View All */}
           <Link
             href="/pets"
             className="group hidden items-center gap-2 text-sm font-semibold text-gray-700 transition-colors hover:text-gray-900 sm:flex"
           >
             View All Pets
+
             <ArrowRight
               className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
               strokeWidth={1.8}
@@ -115,12 +126,10 @@ export default function FeaturedPets() {
                 href={`/pets/${pet.id}`}
                 className="group block w-[280px] shrink-0 snap-start sm:w-[300px] lg:w-[320px]"
               >
-                <article
+                <Card
                   className="
                     overflow-hidden
                     rounded-[26px]
-                    border
-                    border-gray-200
                     bg-gray-50
                     transition-all
                     duration-300
@@ -131,18 +140,61 @@ export default function FeaturedPets() {
                 >
                   {/* Image Area */}
                   <div className="relative h-[245px] overflow-hidden bg-gray-200">
-                    {/* Decorative Circle */}
-                    <div className="absolute left-1/2 top-1/2 h-[190px] w-[190px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gray-300" />
+                    {/* Background Circle */}
+                    <div
+                      aria-hidden="true"
+                      className="
+                        absolute
+                        left-1/2
+                        top-1/2
+                        h-[190px]
+                        w-[190px]
+                        -translate-x-1/2
+                        -translate-y-1/2
+                        rounded-full
+                        bg-gray-300
+                      "
+                    />
 
                     {/* Image Placeholder */}
-                    <div className="absolute bottom-0 left-1/2 flex h-[175px] w-[210px] -translate-x-1/2 items-center justify-center overflow-hidden rounded-[45%_45%_10%_10%] bg-gray-100 shadow-sm">
+                    <div
+                      className="
+                        absolute
+                        bottom-0
+                        left-1/2
+                        flex
+                        h-[175px]
+                        w-[210px]
+                        -translate-x-1/2
+                        items-center
+                        justify-center
+                        overflow-hidden
+                        rounded-[45%_45%_10%_10%]
+                        bg-gray-100
+                        shadow-sm
+                      "
+                    >
                       <span className="text-sm font-medium text-gray-400">
                         Pet Image
                       </span>
                     </div>
 
                     {/* Rating */}
-                    <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 shadow-sm">
+                    <div
+                      className="
+                        absolute
+                        left-4
+                        top-4
+                        flex
+                        items-center
+                        gap-1.5
+                        rounded-full
+                        bg-white
+                        px-3
+                        py-1.5
+                        shadow-sm
+                      "
+                    >
                       <Star
                         className="h-3.5 w-3.5 fill-gray-700 text-gray-700"
                         strokeWidth={1.5}
@@ -153,7 +205,7 @@ export default function FeaturedPets() {
                       </span>
                     </div>
 
-                    {/* Favorite */}
+                    {/* Favorite Button */}
                     <button
                       type="button"
                       aria-label={`Favorite ${pet.name}`}
@@ -232,6 +284,7 @@ export default function FeaturedPets() {
                       </p>
                     </div>
 
+                    {/* Age + Location */}
                     <div className="mt-4 flex items-center gap-2 text-sm text-gray-500">
                       <span>{pet.age}</span>
 
@@ -245,13 +298,14 @@ export default function FeaturedPets() {
                       <span>{pet.location}</span>
                     </div>
 
+                    {/* Bottom Text */}
                     <div className="mt-5 border-t border-gray-100 pt-4">
                       <span className="text-xs font-semibold uppercase tracking-[0.15em] text-gray-500">
                         Ready for a loving home
                       </span>
                     </div>
                   </div>
-                </article>
+                </Card>
               </Link>
             ))}
           </div>
@@ -259,7 +313,19 @@ export default function FeaturedPets() {
           {/* Right Fade */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute right-0 top-0 hidden h-full w-20 bg-gradient-to-l from-white to-transparent lg:block"
+            className="
+              pointer-events-none
+              absolute
+              right-0
+              top-0
+              hidden
+              h-full
+              w-20
+              bg-gradient-to-l
+              from-white
+              to-transparent
+              lg:block
+            "
           />
         </div>
 
@@ -270,6 +336,7 @@ export default function FeaturedPets() {
             className="group flex items-center gap-2 text-sm font-semibold text-gray-700"
           >
             View All Pets
+
             <ArrowRight
               className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
               strokeWidth={1.8}
@@ -277,7 +344,7 @@ export default function FeaturedPets() {
           </Link>
         </div>
 
-        {/* Bottom Decorative Line */}
+        {/* Bottom Divider */}
         <div className="mt-12 flex items-center justify-center gap-4">
           <div className="h-px w-12 bg-gray-200 sm:w-20" />
 
