@@ -13,86 +13,7 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import ImageGallery from "@/components/ui/ImageGallery";
 
-const pets = [
-  {
-    id: 1,
-    name: "Max",
-    breed: "Golden Retriever",
-    category: "Dogs",
-    age: "2 years",
-    gender: "Male",
-    location: "Chennai",
-    price: "₹25,000",
-    rating: "4.9",
-    description:
-      "Max is a friendly and playful Golden Retriever who loves spending time with people. He is looking for a caring family and a loving forever home.",
-  },
-  {
-    id: 2,
-    name: "Luna",
-    breed: "Persian Cat",
-    category: "Cats",
-    age: "1 year",
-    gender: "Female",
-    location: "Chennai",
-    price: "₹18,000",
-    rating: "4.8",
-    description:
-      "Luna is a gentle and affectionate Persian cat who enjoys quiet spaces, cuddles and playful moments.",
-  },
-  {
-    id: 3,
-    name: "Coco",
-    breed: "Cockatiel",
-    category: "Birds",
-    age: "8 months",
-    gender: "Female",
-    location: "Coimbatore",
-    price: "₹8,000",
-    rating: "4.7",
-    description:
-      "Coco is a cheerful Cockatiel with a playful personality and a curious nature.",
-  },
-  {
-    id: 4,
-    name: "Bunny",
-    breed: "Holland Lop",
-    category: "Rabbits",
-    age: "10 months",
-    gender: "Male",
-    location: "Bangalore",
-    price: "₹6,500",
-    rating: "4.9",
-    description:
-      "Bunny is a gentle Holland Lop who loves exploring, playing and spending time with caring families.",
-  },
-  {
-    id: 5,
-    name: "Nemo",
-    breed: "Goldfish",
-    category: "Fish",
-    age: "6 months",
-    gender: "Male",
-    location: "Chennai",
-    price: "₹1,500",
-    rating: "4.8",
-    description:
-      "Nemo is a beautiful and peaceful Goldfish that can bring a calming touch to your home.",
-  },
-  {
-    id: 6,
-    name: "Milo",
-    breed: "Syrian Hamster",
-    category: "Hamsters",
-    age: "7 months",
-    gender: "Male",
-    location: "Coimbatore",
-    price: "₹2,500",
-    rating: "4.9",
-    description:
-      "Milo is a small and energetic Syrian Hamster with a curious and lovable personality.",
-  },
-];
+import { pets } from "@/data/pets";
 
 interface PetDetailPageProps {
   params: Promise<{
@@ -105,16 +26,17 @@ export default async function PetDetailPage({
 }: PetDetailPageProps) {
   const { id } = await params;
 
-  const pet = pets.find(
-    (item) => item.id === Number(id)
-  );
+  // Find the selected pet from the shared pets data
+  const pet = pets.find((item) => item.id === Number(id));
 
+  // Pet not found
   if (!pet) {
     return (
       <main className="bg-white">
         <section className="py-24">
           <Container>
             <div className="mx-auto max-w-md text-center">
+              {/* Icon */}
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
                 <PawPrint
                   className="h-8 w-8 text-gray-400"
@@ -122,17 +44,20 @@ export default async function PetDetailPage({
                 />
               </div>
 
+              {/* Heading */}
               <h1 className="mt-5 text-2xl font-bold text-gray-900">
                 Pet not found
               </h1>
 
+              {/* Description */}
               <p className="mt-2 text-sm text-gray-500">
-                The pet you're looking for is not available.
+                The pet you&apos;re looking for is not available.
               </p>
 
+              {/* Back */}
               <Link
                 href="/pets"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-gray-900"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-700 transition-colors hover:text-gray-900"
               >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Pets
@@ -146,7 +71,9 @@ export default async function PetDetailPage({
 
   return (
     <main className="bg-white">
-      {/* Breadcrumb */}
+      {/* ========================================
+          Breadcrumb
+      ======================================== */}
       <section className="border-b border-gray-100 bg-gray-50">
         <Container>
           <div className="flex h-14 items-center">
@@ -161,12 +88,15 @@ export default async function PetDetailPage({
         </Container>
       </section>
 
-      {/* Pet Details */}
+      {/* ========================================
+          Pet Details
+      ======================================== */}
       <section className="py-12 sm:py-16 lg:py-20">
         <Container>
           <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-            
-            {/* Image */}
+            {/* ========================================
+                Left - Image Gallery
+            ======================================== */}
             <div>
               <ImageGallery
                 images={[]}
@@ -174,8 +104,11 @@ export default async function PetDetailPage({
               />
             </div>
 
-            {/* Information */}
+            {/* ========================================
+                Right - Pet Information
+            ======================================== */}
             <div>
+              {/* Category + Favorite */}
               <div className="flex items-center justify-between gap-4">
                 <span className="rounded-full bg-gray-100 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-gray-600">
                   {pet.category}
@@ -193,15 +126,19 @@ export default async function PetDetailPage({
                 </button>
               </div>
 
+              {/* Pet Name */}
               <h1 className="mt-5 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
                 {pet.name}
               </h1>
 
+              {/* Breed */}
               <p className="mt-2 text-lg text-gray-500">
                 {pet.breed}
               </p>
 
-              {/* Rating */}
+              {/* ========================================
+                  Rating
+              ======================================== */}
               <div className="mt-5 flex items-center gap-2">
                 <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1.5">
                   <Star
@@ -219,7 +156,9 @@ export default async function PetDetailPage({
                 </span>
               </div>
 
-              {/* Price */}
+              {/* ========================================
+                  Price
+              ======================================== */}
               <div className="mt-7">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gray-400">
                   Adoption Price
@@ -230,7 +169,9 @@ export default async function PetDetailPage({
                 </p>
               </div>
 
-              {/* Quick Details */}
+              {/* ========================================
+                  Quick Details
+              ======================================== */}
               <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3">
                 <DetailItem
                   label="Age"
@@ -248,7 +189,9 @@ export default async function PetDetailPage({
                 />
               </div>
 
-              {/* Description */}
+              {/* ========================================
+                  Description
+              ======================================== */}
               <div className="mt-8">
                 <h2 className="text-xl font-bold text-gray-900">
                   About {pet.name}
@@ -259,7 +202,9 @@ export default async function PetDetailPage({
                 </p>
               </div>
 
-              {/* Actions */}
+              {/* ========================================
+                  Actions
+              ======================================== */}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button className="flex-1">
                   Contact About {pet.name}
@@ -273,9 +218,12 @@ export default async function PetDetailPage({
                 </Button>
               </div>
 
-              {/* Trust Card */}
+              {/* ========================================
+                  Trust Card
+              ======================================== */}
               <Card className="mt-8 rounded-[24px] bg-gray-50 p-5">
                 <div className="flex gap-4">
+                  {/* Icon */}
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-900 text-white">
                     <ShieldCheck
                       className="h-5 w-5"
@@ -283,21 +231,24 @@ export default async function PetDetailPage({
                     />
                   </div>
 
+                  {/* Content */}
                   <div>
                     <h3 className="font-bold text-gray-900">
                       Pet Care & Support
                     </h3>
 
                     <p className="mt-1 text-sm leading-6 text-gray-500">
-                      We're here to help you make a smooth and
-                      comfortable transition when bringing your
-                      new companion home.
+                      We&apos;re here to help you make a smooth and
+                      comfortable transition when bringing your new
+                      companion home.
                     </p>
                   </div>
                 </div>
               </Card>
 
-              {/* Location */}
+              {/* ========================================
+                  Location
+              ======================================== */}
               <div className="mt-6 flex items-center gap-2 text-sm text-gray-500">
                 <MapPin
                   className="h-4 w-4"
@@ -316,7 +267,9 @@ export default async function PetDetailPage({
   );
 }
 
-/* Detail Item */
+/* ========================================
+   Detail Item Component
+======================================== */
 
 function DetailItem({
   label,

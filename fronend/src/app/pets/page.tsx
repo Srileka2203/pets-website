@@ -19,6 +19,7 @@ import Container from "@/components/ui/Container";
 import Card from "@/components/ui/Card";
 import ImageGallery from "@/components/ui/ImageGallery";
 import Button from "@/components/ui/Button";
+import { pets } from "@/data/pets";
 
 type PetCategory =
   | "All"
@@ -40,98 +41,7 @@ interface Pet {
   rating: string;
 }
 
-const pets: Pet[] = [
-  {
-    id: 1,
-    name: "Max",
-    breed: "Golden Retriever",
-    category: "Dogs",
-    age: "2 years",
-    location: "Chennai",
-    price: "₹25,000",
-    rating: "4.9",
-  },
-  {
-    id: 2,
-    name: "Luna",
-    breed: "Persian Cat",
-    category: "Cats",
-    age: "1 year",
-    location: "Chennai",
-    price: "₹18,000",
-    rating: "4.8",
-  },
-  {
-    id: 3,
-    name: "Coco",
-    breed: "Cockatiel",
-    category: "Birds",
-    age: "8 months",
-    location: "Coimbatore",
-    price: "₹8,000",
-    rating: "4.7",
-  },
-  {
-    id: 4,
-    name: "Bunny",
-    breed: "Holland Lop",
-    category: "Rabbits",
-    age: "10 months",
-    location: "Bangalore",
-    price: "₹6,500",
-    rating: "4.9",
-  },
-  {
-    id: 5,
-    name: "Nemo",
-    breed: "Goldfish",
-    category: "Fish",
-    age: "6 months",
-    location: "Chennai",
-    price: "₹1,500",
-    rating: "4.8",
-  },
-  {
-    id: 6,
-    name: "Milo",
-    breed: "Syrian Hamster",
-    category: "Hamsters",
-    age: "7 months",
-    location: "Coimbatore",
-    price: "₹2,500",
-    rating: "4.9",
-  },
-  {
-    id: 7,
-    name: "Bruno",
-    breed: "Labrador Retriever",
-    category: "Dogs",
-    age: "1.5 years",
-    location: "Chennai",
-    price: "₹22,000",
-    rating: "4.8",
-  },
-  {
-    id: 8,
-    name: "Misty",
-    breed: "British Shorthair",
-    category: "Cats",
-    age: "11 months",
-    location: "Bangalore",
-    price: "₹20,000",
-    rating: "4.9",
-  },
-  {
-    id: 9,
-    name: "Kiwi",
-    breed: "Lovebird",
-    category: "Birds",
-    age: "9 months",
-    location: "Coimbatore",
-    price: "₹4,500",
-    rating: "4.7",
-  },
-];
+
 
 const filters: {
   name: PetCategory;
