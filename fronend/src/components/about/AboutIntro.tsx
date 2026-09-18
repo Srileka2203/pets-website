@@ -2,7 +2,7 @@ import Container from "@/components/ui/Container";
 
 export default function AboutIntro() {
   return (
-    <section className="bg-gray-50 py-20 sm:py-24">
+    <section id="our-story" className="bg-gray-50 py-20 sm:py-24">
       <Container>
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           {/* Left Content */}
