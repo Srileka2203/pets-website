@@ -1,14 +1,7 @@
-"use client";
-
-import { useState } from "react";
-
 import Container from "@/components/ui/Container";
 import ServiceGrid from "@/components/services/ServiceGrid";
-import ServiceFilter from "@/components/services/ServiceFilter";
 
 export default function ServicesPage() {
-    const [selectedCategory, setSelectedCategory] =
-        useState("All Services");
 
     return (
         <main className="bg-white">
@@ -97,35 +90,52 @@ export default function ServicesPage() {
                 <Container>
 
                     {/* Section Header */}
-                    <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-                        <div>
-                            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
-                                What We Offer
-                            </p>
+                    {/* Section Header */}
+                    <div className="mb-12">
+                        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
+                            What We Offer
+                        </p>
 
-                            <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                        <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                                 Services Made With Care
                             </h2>
 
-                            <p className="mt-3 max-w-xl text-sm leading-6 text-gray-500 sm:text-base">
-                                Give your companion the care, attention, and support they deserve
-                                with our range of pet-friendly services.
-                            </p>
+                            <span className="text-sm font-medium uppercase tracking-[0.15em] text-gray-400">
+                                03 Services
+                            </span>
                         </div>
 
-                        <span className="hidden text-sm font-medium text-gray-400 sm:block">
-                            03 Services
-                        </span>
+                        <p className="mt-4 max-w-xl text-sm leading-6 text-gray-500 sm:text-base">
+                            Give your companion the care, attention, and support they deserve
+                            with our range of pet-friendly services.
+                        </p>
                     </div>
-
-                    {/* Service Categories */}
-                    <ServiceFilter
-                        selectedCategory={selectedCategory}
-                        onCategoryChange={setSelectedCategory}
-                    />
 
                     {/* Service Grid */}
                     <ServiceGrid />
+
+                    {/* Services CTA */}
+                    <div className="mt-16 border-t border-gray-200 pt-12">
+                        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
+                                    Need Help Choosing?
+                                </p>
+
+                                <h3 className="mt-2 text-2xl font-bold tracking-tight text-gray-900">
+                                    We’re here for you and your companion.
+                                </h3>
+                            </div>
+
+                            <a
+                                href="/contact"
+                                className="inline-flex w-fit rounded-lg bg-gray-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-gray-700"
+                            >
+                                Contact Us
+                            </a>
+                        </div>
+                    </div>
 
                 </Container>
             </section>
