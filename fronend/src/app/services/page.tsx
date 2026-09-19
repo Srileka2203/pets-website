@@ -83,13 +83,9 @@ export default function ServicesPage() {
             </section>
 
             {/* Services Section */}
-            <section
-                id="services"
-                className="bg-gray-50 py-20 sm:py-24"
-            >
+            <section id="services" className="bg-gray-50 py-20 sm:py-24">
                 <Container>
 
-                    {/* Section Header */}
                     {/* Section Header */}
                     <div className="mb-12">
                         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
