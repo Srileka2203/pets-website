@@ -3,7 +3,6 @@ import {
   ArrowRight,
   Bone,
   CircleDot,
-  Heart,
   ShoppingBag,
 } from "lucide-react";
 
@@ -13,28 +12,25 @@ import ImageGallery from "@/components/ui/ImageGallery";
 
 const categories = [
   {
-    id: 1,
+    id: "food",
     name: "Pet Food",
-    description: "Nutritious meals and tasty treats",
+    description: "Nutritious meals and tasty treats for your companion.",
     icon: Bone,
+    href: "/products/category/food",
   },
   {
-    id: 2,
+    id: "accessories",
     name: "Accessories",
-    description: "Everyday essentials for your pet",
+    description: "Comfortable and practical essentials for everyday care.",
     icon: ShoppingBag,
+    href: "/products/category/accessories",
   },
   {
-    id: 3,
+    id: "toys",
     name: "Toys",
-    description: "Fun and playful companions",
+    description: "Fun and engaging toys for active, happy pets.",
     icon: CircleDot,
-  },
-  {
-    id: 4,
-    name: "Pet Care",
-    description: "Products for everyday pet care",
-    icon: Heart,
+    href: "/products/category/toys",
   },
 ];
 
@@ -59,27 +55,27 @@ export default function ProductCategories() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-gray-600 sm:text-lg">
-            Explore our collection of essentials carefully selected for
-            happy, healthy, and playful pets.
+            Explore our collection of essentials carefully selected
+            for happy, healthy, and playful pets.
           </p>
         </div>
 
         {/* Category Cards */}
-        <div className="mt-12 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => {
             const Icon = category.icon;
 
             return (
               <Link
                 key={category.id}
-                href={`/products?category=${category.id}`}
-                className="group block h-full w-full"
+                href={category.href}
+                className="group block h-full"
               >
                 <Card
-                  className="
+                  className={`
                     flex
-                    h-[420px]
-                    w-full
+                    h-full
+                    min-h-[420px]
                     flex-col
                     overflow-hidden
                     rounded-[28px]
@@ -91,20 +87,19 @@ export default function ProductCategories() {
                     hover:-translate-y-1
                     hover:border-gray-300
                     hover:shadow-lg
-                  "
+                  `}
                 >
-                  {/* =========================
-                      IMAGE AREA
-                  ========================== */}
+                  {/* Image Area */}
                   <div className="relative h-[240px] shrink-0 overflow-hidden">
                     <ImageGallery
                       images={[]}
                       alt={category.name}
+                      variant="card"
                     />
 
                     {/* Category Icon */}
                     <div
-                      className="
+                      className={`
                         absolute
                         left-5
                         top-5
@@ -120,7 +115,7 @@ export default function ProductCategories() {
                         bg-white
                         text-gray-700
                         shadow-sm
-                      "
+                      `}
                     >
                       <Icon
                         className="h-5 w-5"
@@ -129,55 +124,42 @@ export default function ProductCategories() {
                     </div>
                   </div>
 
-                  {/* =========================
-                      CONTENT AREA
-                  ========================== */}
+                  {/* Content Area */}
                   <div
-                    className="
+                    className={`
                       flex
-                      h-[180px]
-                      shrink-0
+                      flex-1
                       flex-col
                       bg-white
-                      p-5
-                    "
+                      p-6
+                    `}
                   >
-                    {/* Title + Description */}
                     <div>
                       <h3 className="text-lg font-bold tracking-tight text-gray-900">
                         {category.name}
                       </h3>
 
-                      <p
-                        className="
-                          mt-2
-                          max-w-[190px]
-                          text-sm
-                          leading-6
-                          text-gray-500
-                        "
-                      >
+                      <p className="mt-2 max-w-[250px] text-sm leading-6 text-gray-500">
                         {category.description}
                       </p>
                     </div>
 
                     {/* Bottom Row */}
-                    <div className="mt-auto flex items-center justify-between">
+                    <div className="mt-auto flex items-center justify-between pt-8">
                       <span
-                        className="
+                        className={`
                           text-xs
                           font-semibold
                           uppercase
                           tracking-[0.14em]
                           text-gray-400
-                        "
+                        `}
                       >
                         Explore
                       </span>
 
-                      {/* Arrow */}
                       <div
-                        className="
+                        className={`
                           flex
                           h-10
                           w-10
@@ -194,16 +176,16 @@ export default function ProductCategories() {
                           group-hover:border-gray-900
                           group-hover:bg-gray-900
                           group-hover:text-white
-                        "
+                        `}
                       >
                         <ArrowRight
-                          className="
+                          className={`
                             h-4
                             w-4
                             transition-transform
                             duration-200
                             group-hover:translate-x-0.5
-                          "
+                          `}
                           strokeWidth={1.7}
                         />
                       </div>
