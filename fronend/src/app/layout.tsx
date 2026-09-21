@@ -4,6 +4,7 @@ import "./globals.css";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { CartProvider } from "@/context/CartContext";
 
 const quicksand = localFont({
   src: [
@@ -75,11 +76,13 @@ export default function RootLayout({
       className={`${quicksand.variable} ${nunito.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+         <CartProvider>
         <Header />
 
         <main className="flex-1">{children}</main>
 
         <Footer />
+          </CartProvider>
       </body>
     </html>
   );

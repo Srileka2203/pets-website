@@ -62,9 +62,6 @@ export default function ProductsPage() {
       {/* Hero */}
       <ProductsHero />
 
-      {/* Product Categories */}
-      {/* <ProductCategories /> */}
-
       {/* Search */}
       <ProductSearch
         value={search}
@@ -81,10 +78,12 @@ export default function ProductsPage() {
 
       {/* Product Grid */}
       <section id="product-grid" className="py-16 sm:py-20">
-  <Container>
-    <ProductGrid products={filteredProducts} />
-  </Container>
-</section>
+        <Container>
+          <ProductGrid products={filteredProducts} />
+        </Container>
+      </section>
+
+      {/* Product Categories */}
       <ProductCategories />
 
     </main>

@@ -1,7 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { ShoppingCart, User } from "lucide-react";
+
 import Container from "@/components/ui/Container";
 import MobileMenu from "./MobileMenu";
+import useCart from "@/hooks/useCart";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -13,6 +17,8 @@ const navigation = [
 ];
 
 export default function Header() {
+  const { totalQuantity } = useCart();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-gray-50/95 backdrop-blur">
       <Container className="flex h-[72px] items-center justify-between">
@@ -52,13 +58,13 @@ export default function Header() {
           {/* Cart */}
           <Link
             href="/cart"
-            aria-label="Shopping cart"
+            aria-label={`Shopping cart with ${totalQuantity} items`}
             className="relative flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-colors duration-200 hover:bg-gray-200 hover:text-gray-900"
           >
             <ShoppingCart className="h-[18px] w-[18px]" />
 
             <span className="absolute right-0.5 top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-gray-900 px-1 text-[10px] font-semibold leading-none text-white">
-              0
+              {totalQuantity}
             </span>
           </Link>
 

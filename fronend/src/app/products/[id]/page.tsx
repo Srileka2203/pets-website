@@ -6,6 +6,7 @@ import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import ImageGallery from "@/components/ui/ImageGallery";
 import FavoriteButton from "@/components/ui/FavoriteButton";
+import AddToCartButton from "@/components/products/AddToCartButton";
 
 import { products } from "@/data/products";
 
@@ -192,12 +193,8 @@ export default async function ProductDetailsPage({
 
                             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
 
-                                <Button
-                                    disabled={!product.inStock}
-                                    className="sm:flex-1"
-                                >
-                                    Add to Cart
-                                </Button>
+                               <AddToCartButton product={product} />
+
                            {/* wishlist button */}
                            
                                 <FavoriteButton
