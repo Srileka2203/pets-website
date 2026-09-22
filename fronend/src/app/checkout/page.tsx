@@ -67,6 +67,7 @@ export default function CheckoutPage() {
                 <div className="grid gap-8 lg:grid-cols-[1fr_380px]">
                     {/* Checkout details will be added here */}
                   <div className="space-y-8">
+                    
                     {/* Customer Information */}
                     <section className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm">
                         <div>
