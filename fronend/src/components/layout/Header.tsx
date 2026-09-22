@@ -17,7 +17,7 @@ const navigation = [
 ];
 
 export default function Header() {
-  const { totalQuantity } = useCart();
+  const { totalQuantity, isCartLoaded } = useCart();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-gray-50/95 backdrop-blur">
@@ -63,9 +63,11 @@ export default function Header() {
           >
             <ShoppingCart className="h-[18px] w-[18px]" />
 
-            <span className="absolute right-0.5 top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-gray-900 px-1 text-[10px] font-semibold leading-none text-white">
-              {totalQuantity}
-            </span>
+            {isCartLoaded && (
+              <span className="absolute right-0.5 top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-gray-900 px-1 text-[10px] font-semibold leading-none text-white">
+                {totalQuantity}
+              </span>
+            )}
           </Link>
 
           {/* Account */}
