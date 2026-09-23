@@ -6,6 +6,8 @@ import { ArrowLeft, ShoppingBag } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import useCart from "@/hooks/useCart";
+import type { Order } from "@/types/order";
+
 
 export default function CheckoutPage() {
     const { cartItems, subtotal } = useCart();
@@ -66,176 +68,295 @@ export default function CheckoutPage() {
 
                 <div className="grid gap-8 lg:grid-cols-[1fr_380px]">
                     {/* Checkout details will be added here */}
-                  <div className="space-y-8">
-                    
-                    {/* Customer Information */}
-                    <section className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm">
-                        <div>
-                            <h2 className="font-quicksand text-xl font-bold text-gray-900">
-                                Customer Information
-                            </h2>
+                    <form
+                        className="space-y-8"
+                        onSubmit={(event) => {
+                            event.preventDefault();
 
-                            <p className="mt-2 font-nunito text-sm text-gray-500">
-                                Enter your contact details for this order.
-                            </p>
+                            const formData = new FormData(event.currentTarget);
+
+                            const customer = {
+                                fullName: formData.get("fullName") as string,
+                                email: formData.get("email") as string,
+                                phone: formData.get("phone") as string,
+                            };
+
+                            const shippingAddress = {
+                                address: formData.get("address") as string,
+                                city: formData.get("city") as string,
+                                state: formData.get("state") as string,
+                                postalCode: formData.get("postalCode") as string,
+                                country: formData.get("country") as string,
+                            };
+
+                            const paymentMethod = formData.get("paymentMethod");
+
+                            if (paymentMethod !== "cod" && paymentMethod !== "online") {
+                                return;
+                            }
+
+                            const order: Order = {
+                                id: `order-${Date.now()}`,
+                                items: cartItems.map((item) => ({
+                                    product: item,
+                                    quantity: item.quantity,
+                                })),
+                                customer,
+                                shippingAddress,
+                                paymentMethod,
+                                subtotal,
+                                delivery,
+                                total,
+                                createdAt: new Date().toISOString(),
+                            };
+
+                            console.log("Order created:", order);
+                        }}
+                    >
+
+                        {/* Customer Information */}
+                        <section className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm">
+                            <div>
+                                <h2 className="font-quicksand text-xl font-bold text-gray-900">
+                                    Customer Information
+                                </h2>
+
+                                <p className="mt-2 font-nunito text-sm text-gray-500">
+                                    Enter your contact details for this order.
+                                </p>
+                            </div>
+
+                            <div className="mt-6 grid gap-5 sm:grid-cols-2">
+                                <div className="sm:col-span-2">
+                                    <label
+                                        htmlFor="fullName"
+                                        className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
+                                    >
+                                        Full Name
+                                    </label>
+
+                                    <input
+                                        id="fullName"
+                                        name="fullName"
+                                        type="text"
+                                        placeholder="Enter your full name"
+                                        required
+                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label
+                                        htmlFor="email"
+                                        className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
+                                    >
+                                        Email Address
+                                    </label>
+
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        placeholder="Enter your email"
+                                        required
+                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label
+                                        htmlFor="phone"
+                                        className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
+                                    >
+                                        Phone Number
+                                    </label>
+
+                                    <input
+                                        id="phone"
+                                        name="phone"
+                                        type="tel"
+                                        inputMode="numeric"
+                                        pattern="[0-9]{10}"
+                                        maxLength={10}
+                                        placeholder="Enter your 10-digit phone number"
+                                        required
+                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                    />
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* delivery address section */}
+                        <section className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm">
+                            <div>
+                                <h2 className="font-quicksand text-xl font-bold text-gray-900">
+                                    Delivery Address
+                                </h2>
+
+                                <p className="mt-2 font-nunito text-sm text-gray-500">
+                                    Enter the address where you would like your order delivered.
+                                </p>
+                            </div>
+
+                            <div className="mt-6 grid gap-5 sm:grid-cols-2">
+                                <div className="sm:col-span-2">
+                                    <label
+                                        htmlFor="address"
+                                        className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
+                                    >
+                                        Address
+                                    </label>
+
+                                    <textarea
+                                        id="address"
+                                        name="address"
+                                        required
+                                        rows={3}
+                                        placeholder="Enter your full address"
+                                        className="w-full resize-none rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label
+                                        htmlFor="city"
+                                        className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
+                                    >
+                                        City
+                                    </label>
+
+                                    <input
+                                        id="city"
+                                        name="city"
+                                        type="text"
+                                        required
+                                        placeholder="Enter your city"
+                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label
+                                        htmlFor="state"
+                                        className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
+                                    >
+                                        State
+                                    </label>
+
+                                    <input
+                                        id="state"
+                                        name="state"
+                                        type="text"
+                                        required
+                                        placeholder="Enter your state"
+                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label
+                                        htmlFor="postalCode"
+                                        className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
+                                    >
+                                        Postal Code
+                                    </label>
+
+                                    <input
+                                        id="postalCode"
+                                        name="postalCode"
+                                        type="text"
+                                        inputMode="numeric"
+                                        pattern="[0-9]{6}"
+                                        maxLength={6}
+                                        placeholder="Enter your 6-digit postal code"
+                                        required
+                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label
+                                        htmlFor="country"
+                                        className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
+                                    >
+                                        Country
+                                    </label>
+
+                                    <input
+                                        id="country"
+                                        name="country"
+                                        type="text"
+                                        defaultValue="India"
+                                        required
+                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                    />
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Payment option */}
+                        <section className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm">
+                            <div>
+                                <h2 className="font-quicksand text-xl font-bold text-gray-900">
+                                    Payment Method
+                                </h2>
+
+                                <p className="mt-2 font-nunito text-sm text-gray-500">
+                                    Choose how you would like to pay for your order.
+                                </p>
+                            </div>
+
+                            <div className="mt-6 space-y-4">
+                                <label className="flex cursor-pointer items-start gap-4 rounded-2xl border border-gray-200 bg-gray-50 p-4 transition hover:border-gray-400">
+                                    <input
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="cod"
+                                        defaultChecked
+                                        className="mt-1 h-4 w-4 accent-gray-900"
+                                    />
+
+                                    <div>
+                                        <p className="font-nunito text-sm font-semibold text-gray-900">
+                                            Cash on Delivery
+                                        </p>
+
+                                        <p className="mt-1 font-nunito text-sm text-gray-500">
+                                            Pay when your order is delivered to you.
+                                        </p>
+                                    </div>
+                                </label>
+
+                                <label className="flex cursor-pointer items-start gap-4 rounded-2xl border border-gray-200 bg-gray-50 p-4 transition hover:border-gray-400">
+                                    <input
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="cod"
+                                        defaultChecked
+                                        required
+                                        className="mt-1 h-4 w-4 accent-gray-900"
+                                    />
+
+                                    <div>
+                                        <p className="font-nunito text-sm font-semibold text-gray-900">
+                                            Online Payment
+                                        </p>
+
+                                        <p className="mt-1 font-nunito text-sm text-gray-500">
+                                            Pay securely using an online payment method.
+                                        </p>
+                                    </div>
+                                </label>
+                            </div>
+                        </section>
+
+                        <div className="flex justify-end">
+                            <Button type="submit" className="w-full sm:w-auto">
+                                Place Order
+                            </Button>
                         </div>
 
-                        <div className="mt-6 grid gap-5 sm:grid-cols-2">
-                            <div className="sm:col-span-2">
-                                <label
-                                    htmlFor="fullName"
-                                    className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
-                                >
-                                    Full Name
-                                </label>
-
-                                <input
-                                    id="fullName"
-                                    name="fullName"
-                                    type="text"
-                                    placeholder="Enter your full name"
-                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
-                                />
-                            </div>
-
-                            <div>
-                                <label
-                                    htmlFor="email"
-                                    className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
-                                >
-                                    Email Address
-                                </label>
-
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    placeholder="Enter your email"
-                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
-                                />
-                            </div>
-
-                            <div>
-                                <label
-                                    htmlFor="phone"
-                                    className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
-                                >
-                                    Phone Number
-                                </label>
-
-                                <input
-                                    id="phone"
-                                    name="phone"
-                                    type="tel"
-                                    placeholder="Enter your phone number"
-                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
-                                />
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* delivery address section */}
-                    <section className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm">
-                        <div>
-                            <h2 className="font-quicksand text-xl font-bold text-gray-900">
-                                Delivery Address
-                            </h2>
-
-                            <p className="mt-2 font-nunito text-sm text-gray-500">
-                                Enter the address where you would like your order delivered.
-                            </p>
-                        </div>
-
-                        <div className="mt-6 grid gap-5 sm:grid-cols-2">
-                            <div className="sm:col-span-2">
-                                <label
-                                    htmlFor="address"
-                                    className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
-                                >
-                                    Address
-                                </label>
-
-                                <textarea
-                                    id="address"
-                                    name="address"
-                                    rows={3}
-                                    placeholder="Enter your full address"
-                                    className="w-full resize-none rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
-                                />
-                            </div>
-
-                            <div>
-                                <label
-                                    htmlFor="city"
-                                    className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
-                                >
-                                    City
-                                </label>
-
-                                <input
-                                    id="city"
-                                    name="city"
-                                    type="text"
-                                    placeholder="Enter your city"
-                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
-                                />
-                            </div>
-
-                            <div>
-                                <label
-                                    htmlFor="state"
-                                    className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
-                                >
-                                    State
-                                </label>
-
-                                <input
-                                    id="state"
-                                    name="state"
-                                    type="text"
-                                    placeholder="Enter your state"
-                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
-                                />
-                            </div>
-
-                            <div>
-                                <label
-                                    htmlFor="postalCode"
-                                    className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
-                                >
-                                    Postal Code
-                                </label>
-
-                                <input
-                                    id="postalCode"
-                                    name="postalCode"
-                                    type="text"
-                                    inputMode="numeric"
-                                    placeholder="Enter postal code"
-                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
-                                />
-                            </div>
-
-                            <div>
-                                <label
-                                    htmlFor="country"
-                                    className="mb-2 block font-nunito text-sm font-semibold text-gray-700"
-                                >
-                                    Country
-                                </label>
-
-                                <input
-                                    id="country"
-                                    name="country"
-                                    type="text"
-                                    defaultValue="India"
-                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
-                                />
-                            </div>
-                        </div>
-                    </section>
-
-                    </div>
+                    </form>
 
                     {/* Order summary */}
                     <aside className="h-fit rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm lg:sticky lg:top-24">
