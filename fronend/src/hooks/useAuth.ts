@@ -15,6 +15,7 @@ export default function useAuth() {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    // Restore the logged-in user when the app loads
     useEffect(() => {
         const currentUser = getCurrentUser();
 
@@ -22,11 +23,15 @@ export default function useAuth() {
         setIsLoading(false);
     }, []);
 
+    // Login
     const login = async (
         email: string,
         password: string
     ): Promise<boolean> => {
-        const loggedInUser = await loginUser(email, password);
+        const loggedInUser = await loginUser(
+            email,
+            password
+        );
 
         if (!loggedInUser) {
             return false;
@@ -37,6 +42,7 @@ export default function useAuth() {
         return true;
     };
 
+    // Register
     const register = async (
         name: string,
         email: string,
@@ -57,6 +63,7 @@ export default function useAuth() {
         return true;
     };
 
+    // Logout
     const logout = () => {
         logoutUser();
         setUser(null);

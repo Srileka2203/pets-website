@@ -6,10 +6,11 @@ import { useRouter } from "next/navigation";
 
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import { registerUser } from "@/lib/auth";
+import useAuth from "@/hooks/useAuth";
 
 export default function RegisterPage() {
     const router = useRouter();
+    const { register } = useAuth();
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -51,13 +52,13 @@ export default function RegisterPage() {
         setIsSubmitting(true);
 
         try {
-            const user = await registerUser(
+            const success = await register(
                 trimmedName,
                 trimmedEmail,
                 password
             );
 
-            if (!user) {
+            if (!success) {
                 setError(
                     "An account with this email already exists."
                 );
@@ -67,6 +68,7 @@ export default function RegisterPage() {
             router.push("/account");
         } catch (error) {
             console.error("Registration failed:", error);
+
             setError(
                 "Something went wrong while creating your account."
             );
@@ -204,6 +206,7 @@ export default function RegisterPage() {
                                 </p>
                             )}
 
+                            {/* Submit */}
                             <Button
                                 type="submit"
                                 className="w-full"
@@ -217,6 +220,7 @@ export default function RegisterPage() {
 
                         <p className="mt-6 text-center font-nunito text-sm text-gray-500">
                             Already have an account?{" "}
+
                             <Link
                                 href="/login"
                                 className="font-semibold text-gray-900 hover:underline"

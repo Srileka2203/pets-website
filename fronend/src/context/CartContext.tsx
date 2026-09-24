@@ -10,6 +10,7 @@ import {
 } from "react";
 
 import { Product } from "@/data/products";
+import { getCurrentUser } from "@/lib/auth";
 
 export interface CartItem extends Product {
   quantity: number;
@@ -31,7 +32,17 @@ const CartContext = createContext<CartContextType | undefined>(
   undefined
 );
 
-const CART_STORAGE_KEY = "tails-tales-cart";
+const GUEST_CART_STORAGE_KEY = "tails-tales-cart-guest";
+
+function getCartStorageKey(): string {
+  const user = getCurrentUser();
+
+  if (!user) {
+    return GUEST_CART_STORAGE_KEY;
+  }
+
+  return `tails-tales-cart-${user.id}`;
+}
 
 export function CartProvider({
   children,
@@ -41,29 +52,68 @@ export function CartProvider({
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartLoaded, setIsCartLoaded] = useState(false);
 
-  // Load cart from localStorage
-  useEffect(() => {
+  // Load the cart belonging to the current user
+  const loadUserCart = () => {
     try {
-      const storedCart = localStorage.getItem(CART_STORAGE_KEY);
+      setIsCartLoaded(false);
+
+      const storageKey = getCartStorageKey();
+      const storedCart = localStorage.getItem(storageKey);
 
       if (storedCart) {
         const parsedCart: CartItem[] = JSON.parse(storedCart);
-        setCartItems(parsedCart);
+
+        if (Array.isArray(parsedCart)) {
+          setCartItems(parsedCart);
+        } else {
+          setCartItems([]);
+        }
+      } else {
+        setCartItems([]);
       }
     } catch (error) {
       console.error("Failed to load cart:", error);
+      setCartItems([]);
     } finally {
       setIsCartLoaded(true);
     }
+  };
+
+  // Load cart when the application starts
+  useEffect(() => {
+    loadUserCart();
+  }, []);
+
+  // Reload cart when login/logout happens
+  useEffect(() => {
+    const handleAuthChange = () => {
+      loadUserCart();
+    };
+
+    window.addEventListener(
+      "tails-tales-auth-change",
+      handleAuthChange
+    );
+
+    return () => {
+      window.removeEventListener(
+        "tails-tales-auth-change",
+        handleAuthChange
+      );
+    };
   }, []);
 
   // Save cart whenever it changes
   useEffect(() => {
-    if (!isCartLoaded) return;
+    if (!isCartLoaded) {
+      return;
+    }
 
     try {
+      const storageKey = getCartStorageKey();
+
       localStorage.setItem(
-        CART_STORAGE_KEY,
+        storageKey,
         JSON.stringify(cartItems)
       );
     } catch (error) {

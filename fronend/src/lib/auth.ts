@@ -11,7 +11,7 @@ interface StoredUser extends User {
 const PBKDF2_ITERATIONS = 100000;
 
 /**
- * Convert an ArrayBuffer to a hexadecimal string.
+ * Convert ArrayBuffer to hexadecimal string.
  */
 function bufferToHex(buffer: ArrayBuffer): string {
     return Array.from(new Uint8Array(buffer))
@@ -20,36 +20,40 @@ function bufferToHex(buffer: ArrayBuffer): string {
 }
 
 /**
- * Convert a hexadecimal string to Uint8Array.
+ * Convert hexadecimal string to Uint8Array.
  */
 function hexToUint8Array(hex: string): Uint8Array {
     const bytes = new Uint8Array(hex.length / 2);
 
     for (let i = 0; i < bytes.length; i++) {
-        bytes[i] = parseInt(hex.substring(i * 2, i * 2 + 2), 16);
+        bytes[i] = parseInt(
+            hex.substring(i * 2, i * 2 + 2),
+            16
+        );
     }
 
     return bytes;
 }
 
 /**
- * Generate a random salt.
+ * Generate a random salt for a password.
  */
 function generateSalt(): string {
-    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const salt = crypto.getRandomValues(
+        new Uint8Array(16)
+    );
 
     return bufferToHex(salt.buffer);
 }
 
 /**
- * Hash a password using PBKDF2.
+ * Hash a password using PBKDF2 + SHA-256.
  */
 async function hashPassword(
     password: string,
     salt: string
 ): Promise<string> {
     const encoder = new TextEncoder();
-
     const passwordData = encoder.encode(password);
 
     const keyMaterial = await crypto.subtle.importKey(
@@ -62,7 +66,10 @@ async function hashPassword(
 
     const saltBytes = hexToUint8Array(salt);
 
-    const saltBuffer = new ArrayBuffer(saltBytes.byteLength);
+    const saltBuffer = new ArrayBuffer(
+        saltBytes.byteLength
+    );
+
     new Uint8Array(saltBuffer).set(saltBytes);
 
     const derivedBits = await crypto.subtle.deriveBits(
@@ -88,7 +95,8 @@ export function getCurrentUser(): User | null {
     }
 
     try {
-        const storedUser = localStorage.getItem(USER_STORAGE_KEY);
+        const storedUser =
+            localStorage.getItem(USER_STORAGE_KEY);
 
         if (!storedUser) {
             return null;
@@ -96,7 +104,11 @@ export function getCurrentUser(): User | null {
 
         return JSON.parse(storedUser) as User;
     } catch (error) {
-        console.error("Failed to load current user:", error);
+        console.error(
+            "Failed to load current user:",
+            error
+        );
+
         return null;
     }
 }
@@ -114,17 +126,22 @@ export async function registerUser(
     }
 
     try {
-        const storedUsers = localStorage.getItem(USERS_STORAGE_KEY);
+        const storedUsers =
+            localStorage.getItem(USERS_STORAGE_KEY);
 
         const users: StoredUser[] = storedUsers
             ? (JSON.parse(storedUsers) as StoredUser[])
             : [];
 
-        const normalizedEmail = email.trim().toLowerCase();
+        const normalizedEmail =
+            email.trim().toLowerCase();
+
         const trimmedName = name.trim();
 
         const existingUser = users.find(
-            (user) => user.email.toLowerCase() === normalizedEmail
+            (user) =>
+                user.email.toLowerCase() ===
+                normalizedEmail
         );
 
         if (existingUser) {
@@ -132,7 +149,11 @@ export async function registerUser(
         }
 
         const salt = generateSalt();
-        const passwordHash = await hashPassword(password, salt);
+
+        const passwordHash = await hashPassword(
+            password,
+            salt
+        );
 
         const newUser: StoredUser = {
             id: `user-${Date.now()}`,
@@ -160,9 +181,18 @@ export async function registerUser(
             JSON.stringify(user)
         );
 
+        // Tell CartContext that the logged-in user changed.
+        window.dispatchEvent(
+            new Event("tails-tales-auth-change")
+        );
+
         return user;
     } catch (error) {
-        console.error("Failed to register user:", error);
+        console.error(
+            "Failed to register user:",
+            error
+        );
+
         return null;
     }
 }
@@ -179,19 +209,23 @@ export async function loginUser(
     }
 
     try {
-        const storedUsers = localStorage.getItem(USERS_STORAGE_KEY);
+        const storedUsers =
+            localStorage.getItem(USERS_STORAGE_KEY);
 
         if (!storedUsers) {
             return null;
         }
 
-        const users = JSON.parse(storedUsers) as StoredUser[];
+        const users =
+            JSON.parse(storedUsers) as StoredUser[];
 
-        const normalizedEmail = email.trim().toLowerCase();
+        const normalizedEmail =
+            email.trim().toLowerCase();
 
         const user = users.find(
             (storedUser) =>
-                storedUser.email.toLowerCase() === normalizedEmail
+                storedUser.email.toLowerCase() ===
+                normalizedEmail
         );
 
         if (!user) {
@@ -218,9 +252,18 @@ export async function loginUser(
             JSON.stringify(currentUser)
         );
 
+        // Tell CartContext that the logged-in user changed.
+        window.dispatchEvent(
+            new Event("tails-tales-auth-change")
+        );
+
         return currentUser;
     } catch (error) {
-        console.error("Failed to login:", error);
+        console.error(
+            "Failed to login:",
+            error
+        );
+
         return null;
     }
 }
@@ -234,4 +277,9 @@ export function logoutUser(): void {
     }
 
     localStorage.removeItem(USER_STORAGE_KEY);
+
+    // Tell CartContext that the logged-in user changed.
+    window.dispatchEvent(
+        new Event("tails-tales-auth-change")
+    );
 }
