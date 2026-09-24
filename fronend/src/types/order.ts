@@ -21,6 +21,7 @@ export interface CustomerInformation {
 
 export interface Order {
     id: string;
+    userId: string;
     items: OrderItem[];
     customer: CustomerInformation;
     shippingAddress: ShippingAddress;

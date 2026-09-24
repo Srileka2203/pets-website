@@ -7,10 +7,13 @@ import { ArrowLeft, ShoppingBag } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import useCart from "@/hooks/useCart";
+import useAuth from "@/hooks/useAuth";
 import type { Order } from "@/types/order";
+import { saveOrder } from "@/lib/orders";
 
 export default function CheckoutPage() {
     const { cartItems, subtotal, clearCart } = useCart();
+    const { user } = useAuth();
     const [isOrderPlaced, setIsOrderPlaced] = useState(false);
 
     const delivery = subtotal > 0 ? 0 : 0;
@@ -105,6 +108,10 @@ export default function CheckoutPage() {
                         onSubmit={(event) => {
                             event.preventDefault();
 
+                            if (!user) {
+                                return;
+                            }
+
                             const formData = new FormData(event.currentTarget);
 
                             const customer = {
@@ -133,6 +140,7 @@ export default function CheckoutPage() {
 
                             const order: Order = {
                                 id: `order-${Date.now()}`,
+                                userId: user.id,
                                 items: cartItems.map((item) => ({
                                     product: item,
                                     quantity: item.quantity,
@@ -146,8 +154,9 @@ export default function CheckoutPage() {
                                 createdAt: new Date().toISOString(),
                             };
 
+                            saveOrder(order);
                             console.log("Order created:", order);
-                            
+
                             clearCart();
                             setIsOrderPlaced(true);
                         }}
