@@ -206,10 +206,17 @@ export default async function PetDetailPage({
                   Actions
               ======================================== */}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button className="flex-1">
-                  Contact About {pet.name}
-                </Button>
+                {/* Contact About Pet */}
+                <Link
+                  href="/contact#contact-form"
+                  className="flex-1"
+                >
+                  <Button className="w-full">
+                    Contact About {pet.name}
+                  </Button>
+                </Link>
 
+                {/* Add to Favorites */}
                 <Button
                   variant="outline"
                   className="flex-1"

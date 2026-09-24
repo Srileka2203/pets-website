@@ -6,6 +6,7 @@ import { ShoppingCart, User } from "lucide-react";
 import Container from "@/components/ui/Container";
 import MobileMenu from "./MobileMenu";
 import useCart from "@/hooks/useCart";
+import useAuth from "@/hooks/useAuth";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -18,6 +19,7 @@ const navigation = [
 
 export default function Header() {
   const { totalQuantity, isCartLoaded } = useCart();
+  const { user, isLoading } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-gray-50/95 backdrop-blur">
@@ -73,10 +75,20 @@ export default function Header() {
           {/* Account */}
           <Link
             href="/account"
-            aria-label="My account"
+            aria-label={
+              user ? `Account for ${user.name}` : "My account"
+            }
             className="hidden h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-colors duration-200 hover:bg-gray-200 hover:text-gray-900 sm:flex"
           >
-            <User className="h-[18px] w-[18px]" />
+            {isLoading ? (
+              <User className="h-[18px] w-[18px]" />
+            ) : user ? (
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 font-quicksand text-sm font-bold text-white">
+                {user.name.charAt(0).toUpperCase()}
+              </span>
+            ) : (
+              <User className="h-[18px] w-[18px]" />
+            )}
           </Link>
 
           {/* Mobile Menu */}
