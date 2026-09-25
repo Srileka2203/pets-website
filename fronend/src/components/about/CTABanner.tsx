@@ -10,7 +10,7 @@ export default function CTABanner() {
       className={`
         relative
         overflow-hidden
-        bg-gray-900
+        bg-[#26AFA1]
         py-20
         sm:py-24
       `}
@@ -26,7 +26,7 @@ export default function CTABanner() {
           h-48
           w-48
           rounded-full
-          bg-gray-800
+          bg-[#1F9D91]
         `}
       />
 
@@ -41,7 +41,23 @@ export default function CTABanner() {
           h-52
           w-52
           rounded-full
-          bg-gray-800
+          bg-[#FFDDE8]
+          opacity-20
+        `}
+      />
+
+      {/* Decorative Coral Circle */}
+      <div
+        aria-hidden="true"
+        className={`
+          pointer-events-none
+          absolute
+          right-16
+          top-16
+          h-3
+          w-3
+          rounded-full
+          bg-[#FFD54F]
         `}
       />
 
@@ -68,8 +84,9 @@ export default function CTABanner() {
               items-center
               justify-center
               rounded-full
-              bg-gray-800
-              text-gray-200
+              bg-white
+              text-[#FF7043]
+              shadow-sm
             `}
           >
             <PawPrint
@@ -86,7 +103,7 @@ export default function CTABanner() {
               font-semibold
               uppercase
               tracking-[0.22em]
-              text-gray-400
+              text-[#FFF8D9]
             `}
           >
             We're Here for You
@@ -106,7 +123,7 @@ export default function CTABanner() {
             `}
           >
             Everything Your
-            <span className="block text-gray-400">
+            <span className="block text-[#FFE7EF]">
               Pet Deserves
             </span>
           </h2>
@@ -119,7 +136,7 @@ export default function CTABanner() {
               max-w-2xl
               text-base
               leading-7
-              text-gray-300
+              text-white/85
               sm:text-lg
             `}
           >
@@ -141,8 +158,18 @@ export default function CTABanner() {
             `}
           >
             <Link href="/products">
-              <Button>
+              <Button
+                className={`
+                  border-[#FF7043]
+                  bg-[#FF7043]
+                  text-white
+                  shadow-sm
+                  hover:border-[#E85D35]
+                  hover:bg-[#E85D35]
+                `}
+              >
                 Explore Products
+
                 <ArrowRight
                   className="ml-2 h-4 w-4"
                   strokeWidth={1.7}
@@ -151,7 +178,17 @@ export default function CTABanner() {
             </Link>
 
             <Link href="/contact">
-              <Button variant="outline">
+              <Button
+                variant="outline"
+                className={`
+                  border-white
+                  bg-white
+                  text-[#26AFA1]
+                  hover:border-[#FFE7EF]
+                  hover:bg-[#FFE7EF]
+                  hover:text-[#26AFA1]
+                `}
+              >
                 Contact Us
               </Button>
             </Link>

@@ -21,6 +21,10 @@ const categories = [
     count: "50+ pets",
     href: "/categories/dogs",
     icon: Dog,
+    color: "bg-orange-50",
+    iconBg: "bg-orange-100",
+    iconColor: "text-orange-500",
+    circle: "bg-orange-100/70",
   },
   {
     name: "Cats",
@@ -28,6 +32,10 @@ const categories = [
     count: "40+ pets",
     href: "/categories/cats",
     icon: Cat,
+    color: "bg-teal-50",
+    iconBg: "bg-teal-100",
+    iconColor: "text-teal-500",
+    circle: "bg-teal-100/70",
   },
   {
     name: "Birds",
@@ -35,6 +43,10 @@ const categories = [
     count: "25+ pets",
     href: "/categories/birds",
     icon: Bird,
+    color: "bg-yellow-50",
+    iconBg: "bg-yellow-100",
+    iconColor: "text-yellow-600",
+    circle: "bg-yellow-100/70",
   },
   {
     name: "Rabbits",
@@ -42,6 +54,10 @@ const categories = [
     count: "20+ pets",
     href: "/categories/rabbits",
     icon: Rabbit,
+    color: "bg-pink-50",
+    iconBg: "bg-pink-100",
+    iconColor: "text-pink-500",
+    circle: "bg-pink-100/70",
   },
   {
     name: "Fish",
@@ -49,6 +65,10 @@ const categories = [
     count: "30+ pets",
     href: "/categories/fish",
     icon: Fish,
+    color: "bg-sky-50",
+    iconBg: "bg-sky-100",
+    iconColor: "text-sky-500",
+    circle: "bg-sky-100/70",
   },
   {
     name: "Hamsters",
@@ -56,6 +76,10 @@ const categories = [
     count: "15+ pets",
     href: "/categories/hamsters",
     icon: Mouse,
+    color: "bg-amber-50",
+    iconBg: "bg-amber-100",
+    iconColor: "text-amber-600",
+    circle: "bg-amber-100/70",
   },
 ];
 
@@ -69,31 +93,33 @@ export default function CategoriesPage() {
         {/* Decorative Circles */}
         <div
           aria-hidden="true"
-          className="absolute -left-24 top-10 h-56 w-56 rounded-full bg-gray-200/70"
+          className="absolute -left-24 top-10 h-56 w-56 rounded-full bg-orange-100/60"
         />
 
         <div
           aria-hidden="true"
-          className="absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-gray-200/70"
+          className="absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-teal-100/60"
         />
 
         <Container className="relative z-10">
           <div className="max-w-2xl">
             {/* Icon */}
-            <PawPrint
-              className="mb-5 h-9 w-9 text-gray-400"
-              strokeWidth={1.4}
-            />
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-orange-100">
+              <PawPrint
+                className="h-6 w-6 text-orange-500"
+                strokeWidth={1.5}
+              />
+            </div>
 
             {/* Small Heading */}
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gray-500">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-teal-600">
               Explore Our Pets
             </p>
 
             {/* Main Heading */}
             <h1 className="mt-4 text-4xl font-bold leading-[1.05] tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
               Find Your
-              <span className="block text-gray-500">
+              <span className="block text-orange-500">
                 Perfect Companion
               </span>
             </h1>
@@ -122,11 +148,13 @@ export default function CategoriesPage() {
                   href={category.href}
                   className="group"
                 >
-                  <Card className="relative h-[320px] overflow-hidden rounded-[28px] border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg">
+                  <Card
+                    className={`relative h-[320px] overflow-hidden rounded-[28px] border-gray-200 ${category.color} transition-all duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg`}
+                  >
                     {/* Background Circle */}
                     <div
                       aria-hidden="true"
-                      className="absolute bottom-[-45px] right-[-35px] h-[240px] w-[240px] rounded-full bg-gray-100"
+                      className={`absolute bottom-[-45px] right-[-35px] h-[240px] w-[240px] rounded-full ${category.circle}`}
                     />
 
                     {/* Image */}
@@ -141,7 +169,9 @@ export default function CategoriesPage() {
                     <div className="relative z-20 flex h-full flex-col justify-between p-7">
                       <div className="max-w-[190px]">
                         {/* Category Icon */}
-                        <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-700">
+                        <div
+                          className={`mb-5 flex h-11 w-11 items-center justify-center rounded-full ${category.iconBg} ${category.iconColor}`}
+                        >
                           <Icon
                             className="h-5 w-5"
                             strokeWidth={1.7}
@@ -159,13 +189,17 @@ export default function CategoriesPage() {
                         </p>
 
                         {/* Count */}
-                        <p className="mt-3 text-sm font-semibold text-gray-500">
+                        <p
+                          className={`mt-3 text-sm font-semibold ${category.iconColor}`}
+                        >
                           {category.count}
                         </p>
                       </div>
 
                       {/* Arrow */}
-                      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-900 transition-all duration-300 group-hover:bg-gray-900 group-hover:text-white">
+                      <div
+                        className={`flex h-11 w-11 items-center justify-center rounded-full ${category.iconBg} ${category.iconColor} transition-all duration-300 group-hover:bg-gray-900 group-hover:text-white`}
+                      >
                         <ArrowRight
                           className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
                           strokeWidth={1.8}
@@ -182,10 +216,10 @@ export default function CategoriesPage() {
               BOTTOM DECORATION
           ========================================== */}
           <div className="mt-16 flex items-center justify-center gap-4">
-            <div className="h-px w-12 bg-gray-200 sm:w-20" />
+            <div className="h-px w-12 bg-orange-200 sm:w-20" />
 
             <PawPrint
-              className="h-5 w-5 text-gray-400"
+              className="h-5 w-5 text-orange-400"
               strokeWidth={1.5}
             />
 
@@ -193,7 +227,7 @@ export default function CategoriesPage() {
               More Pets. More Love.
             </span>
 
-            <div className="h-px w-12 bg-gray-200 sm:w-20" />
+            <div className="h-px w-12 bg-teal-200 sm:w-20" />
           </div>
         </Container>
       </section>

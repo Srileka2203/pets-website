@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { PawPrint } from "lucide-react";
 
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
@@ -78,12 +79,44 @@ export default function RegisterPage() {
     };
 
     return (
-        <main className="min-h-screen bg-gray-50 py-16 sm:py-20">
-            <Container>
+        <main className="relative min-h-screen overflow-hidden bg-orange-50/60 py-16 sm:py-20">
+
+            {/* Decorative pastel circles */}
+
+            <div
+                aria-hidden="true"
+                className="absolute -left-24 top-20 h-56 w-56 rounded-full bg-orange-100/70"
+            />
+
+            <div
+                aria-hidden="true"
+                className="absolute -right-24 top-10 h-64 w-64 rounded-full bg-teal-100/60"
+            />
+
+            <div
+                aria-hidden="true"
+                className="absolute bottom-[-100px] left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-yellow-100/60"
+            />
+
+            <Container className="relative z-10">
                 <div className="mx-auto max-w-md">
-                    <div className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+
+                    <div className="rounded-[28px] border border-orange-100 bg-white p-6 shadow-sm sm:p-8">
+
+                        {/* Header */}
+
                         <div className="text-center">
-                            <h1 className="font-quicksand text-3xl font-bold text-gray-900">
+
+                            {/* Logo Icon */}
+
+                            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-orange-100">
+                                <PawPrint
+                                    className="h-7 w-7 text-orange-500"
+                                    strokeWidth={1.5}
+                                />
+                            </div>
+
+                            <h1 className="mt-5 font-quicksand text-3xl font-bold text-gray-900">
                                 Create Account
                             </h1>
 
@@ -97,6 +130,7 @@ export default function RegisterPage() {
                             className="mt-8 space-y-5"
                         >
                             {/* Full Name */}
+
                             <div>
                                 <label
                                     htmlFor="name"
@@ -116,11 +150,12 @@ export default function RegisterPage() {
                                     placeholder="Enter your full name"
                                     required
                                     disabled={isSubmitting}
-                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white disabled:cursor-not-allowed disabled:opacity-60"
+                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-orange-300 focus:bg-white focus:ring-2 focus:ring-orange-100 disabled:cursor-not-allowed disabled:opacity-60"
                                 />
                             </div>
 
                             {/* Email */}
+
                             <div>
                                 <label
                                     htmlFor="email"
@@ -140,11 +175,12 @@ export default function RegisterPage() {
                                     placeholder="Enter your email"
                                     required
                                     disabled={isSubmitting}
-                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white disabled:cursor-not-allowed disabled:opacity-60"
+                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-orange-300 focus:bg-white focus:ring-2 focus:ring-orange-100 disabled:cursor-not-allowed disabled:opacity-60"
                                 />
                             </div>
 
                             {/* Password */}
+
                             <div>
                                 <label
                                     htmlFor="password"
@@ -165,11 +201,12 @@ export default function RegisterPage() {
                                     required
                                     minLength={6}
                                     disabled={isSubmitting}
-                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white disabled:cursor-not-allowed disabled:opacity-60"
+                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-orange-300 focus:bg-white focus:ring-2 focus:ring-orange-100 disabled:cursor-not-allowed disabled:opacity-60"
                                 />
                             </div>
 
                             {/* Confirm Password */}
+
                             <div>
                                 <label
                                     htmlFor="confirmPassword"
@@ -192,24 +229,28 @@ export default function RegisterPage() {
                                     required
                                     minLength={6}
                                     disabled={isSubmitting}
-                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white disabled:cursor-not-allowed disabled:opacity-60"
+                                    className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-orange-300 focus:bg-white focus:ring-2 focus:ring-orange-100 disabled:cursor-not-allowed disabled:opacity-60"
                                 />
                             </div>
 
                             {/* Error */}
+
                             {error && (
-                                <p
-                                    role="alert"
-                                    className="font-nunito text-sm text-gray-600"
-                                >
-                                    {error}
-                                </p>
+                                <div className="rounded-2xl border border-pink-200 bg-pink-50 px-4 py-3">
+                                    <p
+                                        role="alert"
+                                        className="font-nunito text-sm text-pink-600"
+                                    >
+                                        {error}
+                                    </p>
+                                </div>
                             )}
 
                             {/* Submit */}
+
                             <Button
                                 type="submit"
-                                className="w-full"
+                                className="w-full !bg-orange-500 !text-white transition-all hover:!bg-orange-600"
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting
@@ -218,16 +259,31 @@ export default function RegisterPage() {
                             </Button>
                         </form>
 
+                        {/* Login */}
+
                         <p className="mt-6 text-center font-nunito text-sm text-gray-500">
                             Already have an account?{" "}
 
                             <Link
                                 href="/login"
-                                className="font-semibold text-gray-900 hover:underline"
+                                className="font-semibold text-orange-500 transition-colors hover:text-orange-600 hover:underline"
                             >
                                 Login
                             </Link>
                         </p>
+                    </div>
+
+                    {/* Bottom decoration */}
+
+                    <div className="mt-8 flex items-center justify-center gap-3">
+                        <div className="h-px w-10 bg-orange-200" />
+
+                        <PawPrint
+                            className="h-4 w-4 text-orange-400"
+                            strokeWidth={1.5}
+                        />
+
+                        <div className="h-px w-10 bg-teal-200" />
                     </div>
                 </div>
             </Container>

@@ -3,12 +3,38 @@
 :root {
   --font-primary: var(--font-quicksand);
   --font-secondary: var(--font-nunito);
+
+  /* Tails & Tales Brand Colors */
+  --color-coral: #ff7043;
+  --color-teal: #26c6b5;
+  --color-yellow: #ffd54f;
+  --color-pink: #ff80ab;
+
+  /* Brand Family Shades */
+  --color-coral-light: #fff1ec;
+  --color-coral-soft: #ffd6c9;
+
+  --color-teal-light: #e8faf7;
+  --color-teal-soft: #bfeee8;
+
+  --color-yellow-light: #fff9df;
+  --color-yellow-soft: #ffdfa0;
+
+  --color-pink-light: #fff0f5;
+  --color-pink-soft: #ffd0de;
+
+  /* Neutral Brand Colors */
+  --color-navy: #172b4d;
+  --color-text: #536174;
+  --color-muted: #68778d;
+  --color-background: #ffffff;
+  --color-surface: #fffaf7;
 }
 
 body {
   font-family: var(--font-secondary);
-  background: #ffffff;
-  color: #111827;
+  background: var(--color-background);
+  color: var(--color-text);
 }
 
 h1,

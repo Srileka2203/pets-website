@@ -29,7 +29,7 @@ export default function MobileMenu() {
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? "Close menu" : "Open menu"}
         aria-expanded={isOpen}
-        className="flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300"
+        className="flex h-10 w-10 items-center justify-center rounded-full text-[#536174] transition-colors hover:bg-[#FFF1EC] hover:text-[#FF7043] focus:outline-none focus:ring-2 focus:ring-[#FFD6C9]"
       >
         {isOpen ? (
           <X className="h-5 w-5" />
@@ -40,18 +40,22 @@ export default function MobileMenu() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="absolute inset-x-0 top-[72px] border-b border-gray-200 bg-white shadow-sm">
+        <div className="absolute inset-x-0 top-[72px] border-b border-[#FFD6C9] bg-white/95 shadow-sm backdrop-blur-md">
           <Container>
             <nav
               className="flex flex-col py-4"
               aria-label="Mobile navigation"
             >
-              {navigation.map((item) => (
+              {navigation.map((item, index) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   onClick={closeMenu}
-                  className="border-b border-gray-100 py-3 text-sm font-medium text-gray-700 transition-colors last:border-b-0 hover:text-gray-900"
+                  className={`py-3 text-sm font-medium text-[#536174] transition-colors hover:text-[#FF7043] ${
+                    index !== navigation.length - 1
+                      ? "border-b border-[#F7E4DE]"
+                      : ""
+                  }`}
                 >
                   {item.name}
                 </Link>

@@ -33,8 +33,8 @@ export default function FavoriteButton({
       data-item-id={itemId}
       className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-200 ${
         isFavorite
-          ? "border-gray-900 bg-gray-900 text-white"
-          : "border-gray-200 bg-white text-gray-600 hover:border-gray-900 hover:bg-gray-900 hover:text-white"
+          ? "border-[#FF80AB] bg-[#FF80AB] text-white"
+          : "border-[#FFD0DE] bg-white text-[#FF80AB] hover:border-[#FF80AB] hover:bg-[#FFF0F5]"
       } ${className}`}
     >
       <Heart

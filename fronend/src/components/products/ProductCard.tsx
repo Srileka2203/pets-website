@@ -17,9 +17,9 @@ export default function ProductCard({
   onToggleFavorite,
 }: ProductCardProps) {
   return (
-    <article  className="group">
+    <article className="group">
       {/* Product Image */}
-      <Card className="relative overflow-hidden rounded-[28px] border-gray-200 bg-gray-100 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-gray-300 group-hover:shadow-lg">
+      <Card className="relative overflow-hidden rounded-[28px] border-[#F2D9E1] bg-[#F8FAFA] shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[#F0B9C9] group-hover:shadow-lg">
         <div className="relative h-[300px] overflow-hidden">
           <ImageGallery
             images={product.images}
@@ -30,11 +30,11 @@ export default function ProductCard({
           {/* Rating */}
           <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 shadow-sm">
             <Star
-              className="h-3.5 w-3.5 fill-gray-700 text-gray-700"
+              className="h-3.5 w-3.5 fill-[#FFD54F] text-[#E5B72D]"
               strokeWidth={1.5}
             />
 
-            <span className="text-xs font-semibold text-gray-700">
+            <span className="text-xs font-semibold text-[#59656B]">
               {product.rating}
             </span>
           </div>
@@ -51,8 +51,8 @@ export default function ProductCard({
               onClick={() => onToggleFavorite(product.id)}
               className={`absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border shadow-sm transition-all duration-200 ${
                 isFavorite
-                  ? "border-gray-900 bg-gray-900 text-white"
-                  : "border-gray-200 bg-white text-gray-600 hover:bg-gray-900 hover:text-white"
+                  ? "border-[#FF80AB] bg-[#FF80AB] text-white"
+                  : "border-[#F3CBD8] bg-white text-[#59656B] hover:border-[#FF80AB] hover:bg-[#FFF0F5] hover:text-[#FF5F91]"
               }`}
             >
               <Heart
@@ -64,14 +64,14 @@ export default function ProductCard({
           )}
 
           {/* Category */}
-          <div className="absolute bottom-4 left-4 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-gray-600 shadow-sm">
+          <div className="absolute bottom-4 left-4 rounded-full border border-[#CDECE7] bg-[#EAFBF8] px-3 py-1.5 text-xs font-semibold text-[#168F82] shadow-sm">
             {product.category}
           </div>
 
           {/* Out of Stock */}
           {!product.inStock && (
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-900/40">
-              <span className="rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-gray-900">
+            <div className="absolute inset-0 flex items-center justify-center bg-[#263238]/40">
+              <span className="rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-[#263238] shadow-sm">
                 Out of Stock
               </span>
             </div>
@@ -87,27 +87,33 @@ export default function ProductCard({
               href={`/products/${product.id}`}
               className="block"
             >
-              <h3 className="text-lg font-bold tracking-tight text-gray-900 transition-colors group-hover:text-gray-600">
+              <h3 className="text-lg font-bold tracking-tight text-[#263238] transition-colors group-hover:text-[#FF7043]">
                 {product.name}
               </h3>
             </Link>
 
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-[#737D82]">
               {product.subcategory}
             </p>
           </div>
 
-          <p className="whitespace-nowrap text-base font-bold text-gray-900">
+          <p className="whitespace-nowrap text-base font-bold text-[#FF7043]">
             {product.price}
           </p>
         </div>
 
         {/* Pet Types */}
         <div className="mt-3 flex flex-wrap gap-1.5">
-          {product.petType.map((pet) => (
+          {product.petType.map((pet, index) => (
             <span
               key={pet}
-              className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-500"
+              className={`rounded-full px-2.5 py-1 text-xs font-medium ${
+                index % 3 === 0
+                  ? "bg-[#FFF0EA] text-[#E85D35]"
+                  : index % 3 === 1
+                    ? "bg-[#EAFBF8] text-[#168F82]"
+                    : "bg-[#FFF0F5] text-[#E65D89]"
+              }`}
             >
               {pet}
             </span>
@@ -117,7 +123,7 @@ export default function ProductCard({
         {/* View Product */}
         <Link
           href={`/products/${product.id}`}
-          className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-gray-500 transition-colors hover:text-gray-900"
+          className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-[#26AFA1] transition-colors hover:text-[#FF7043]"
         >
           View Product
 

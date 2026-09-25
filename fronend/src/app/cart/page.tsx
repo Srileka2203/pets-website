@@ -22,18 +22,18 @@ export default function CartPage() {
 
     if (cartItems.length === 0) {
         return (
-            <main className="min-h-screen bg-gray-50">
+            <main className="min-h-screen bg-amber-50/40">
                 <Container>
                     <section className="flex min-h-[70vh] items-center justify-center py-16">
-                        <div className="w-full max-w-lg rounded-[32px] border border-gray-200 bg-white px-6 py-12 text-center shadow-sm sm:px-10">
-                            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+                        <div className="w-full max-w-lg rounded-[32px] border border-amber-100 bg-white px-6 py-12 text-center shadow-sm sm:px-10">
+                            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-amber-100">
                                 <ShoppingBag
-                                    className="h-9 w-9 text-gray-700"
+                                    className="h-9 w-9 text-amber-600"
                                     strokeWidth={1.5}
                                 />
                             </div>
 
-                            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
+                            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-amber-600">
                                 Your Cart
                             </p>
 
@@ -42,8 +42,9 @@ export default function CartPage() {
                             </h1>
 
                             <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-gray-600 sm:text-base">
-                                Looks like you haven&apos;t added anything to your cart yet.
-                                Explore our products and find something your pet will love.
+                                Looks like you haven&apos;t added anything to
+                                your cart yet. Explore our products and find
+                                something your pet will love.
                             </p>
 
                             <div className="mt-8">
@@ -59,11 +60,11 @@ export default function CartPage() {
     }
 
     return (
-        <main className="bg-gray-50 py-16 sm:py-20 lg:py-24">
+        <main className="bg-amber-50/40 py-16 sm:py-20 lg:py-24">
             <Container>
                 {/* Header */}
                 <div className="mb-10">
-                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
+                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-600">
                         Shopping Cart
                     </p>
 
@@ -89,20 +90,20 @@ export default function CartPage() {
                             return (
                                 <div
                                     key={item.id}
-                                    className="rounded-[28px] border border-gray-200 bg-white p-5 shadow-sm sm:p-6"
+                                    className="rounded-[28px] border border-amber-100 bg-white p-5 shadow-sm transition hover:border-amber-200 hover:shadow-md sm:p-6"
                                 >
                                     <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
                                         {/* Product Image */}
-                                        <div className="flex h-28 w-full shrink-0 items-center justify-center rounded-[22px] bg-gray-100 sm:h-28 sm:w-28">
+                                        <div className="flex h-28 w-full shrink-0 items-center justify-center rounded-[22px] bg-amber-50 sm:h-28 sm:w-28">
                                             <ShoppingBag
-                                                className="h-8 w-8 text-gray-400"
+                                                className="h-8 w-8 text-amber-500"
                                                 strokeWidth={1.4}
                                             />
                                         </div>
 
                                         {/* Product Details */}
                                         <div className="min-w-0 flex-1">
-                                            <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                                            <p className="text-xs font-semibold uppercase tracking-wider text-amber-600">
                                                 {item.category}
                                             </p>
 
@@ -121,12 +122,14 @@ export default function CartPage() {
 
                                         {/* Quantity */}
                                         <div className="flex items-center justify-between gap-5 sm:flex-col sm:items-end">
-                                            <div className="flex items-center rounded-full border border-gray-200 bg-gray-50">
+                                            <div className="flex items-center rounded-full border border-amber-200 bg-amber-50">
                                                 <button
                                                     type="button"
-                                                    onClick={() => decreaseQuantity(item.id)}
+                                                    onClick={() =>
+                                                        decreaseQuantity(item.id)
+                                                    }
                                                     aria-label={`Decrease quantity of ${item.name}`}
-                                                    className="flex h-9 w-9 items-center justify-center rounded-full text-gray-600 transition hover:bg-gray-200 hover:text-gray-950"
+                                                    className="flex h-9 w-9 items-center justify-center rounded-full text-amber-700 transition hover:bg-amber-100 hover:text-amber-900"
                                                 >
                                                     <Minus className="h-4 w-4" />
                                                 </button>
@@ -137,9 +140,11 @@ export default function CartPage() {
 
                                                 <button
                                                     type="button"
-                                                    onClick={() => increaseQuantity(item.id)}
+                                                    onClick={() =>
+                                                        increaseQuantity(item.id)
+                                                    }
                                                     aria-label={`Increase quantity of ${item.name}`}
-                                                    className="flex h-9 w-9 items-center justify-center rounded-full text-gray-600 transition hover:bg-gray-200 hover:text-gray-950"
+                                                    className="flex h-9 w-9 items-center justify-center rounded-full text-amber-700 transition hover:bg-amber-100 hover:text-amber-900"
                                                 >
                                                     <Plus className="h-4 w-4" />
                                                 </button>
@@ -152,9 +157,11 @@ export default function CartPage() {
 
                                                 <button
                                                     type="button"
-                                                    onClick={() => removeFromCart(item.id)}
+                                                    onClick={() =>
+                                                        removeFromCart(item.id)
+                                                    }
                                                     aria-label={`Remove ${item.name} from cart`}
-                                                    className="flex h-9 w-9 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 hover:text-gray-950"
+                                                    className="flex h-9 w-9 items-center justify-center rounded-full text-red-400 transition hover:bg-red-50 hover:text-red-600"
                                                 >
                                                     <Trash2 className="h-4 w-4" />
                                                 </button>
@@ -167,14 +174,25 @@ export default function CartPage() {
                     </div>
 
                     {/* Cart Summary */}
-                    <aside className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm sm:p-8 lg:sticky lg:top-24">
-                        <h2 className="text-xl font-bold text-gray-950">
-                            Order Summary
-                        </h2>
+                    <aside className="rounded-[28px] border border-amber-200 bg-white p-6 shadow-sm lg:sticky lg:top-24 sm:p-8">
+                        <div className="flex items-center gap-3">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
+                                <ShoppingBag
+                                    className="h-5 w-5 text-amber-600"
+                                    strokeWidth={1.6}
+                                />
+                            </div>
+
+                            <h2 className="text-xl font-bold text-gray-950">
+                                Order Summary
+                            </h2>
+                        </div>
 
                         <div className="mt-6 space-y-4">
                             <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-600">Subtotal</span>
+                                <span className="text-gray-600">
+                                    Subtotal
+                                </span>
 
                                 <span className="font-semibold text-gray-950">
                                     {formatPrice(subtotal)}
@@ -182,20 +200,22 @@ export default function CartPage() {
                             </div>
 
                             <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-600">Delivery</span>
+                                <span className="text-gray-600">
+                                    Delivery
+                                </span>
 
-                                <span className="font-semibold text-gray-950">
+                                <span className="font-semibold text-green-600">
                                     Free
                                 </span>
                             </div>
 
-                            <div className="border-t border-gray-200 pt-4">
+                            <div className="border-t border-amber-100 pt-4">
                                 <div className="flex items-center justify-between">
                                     <span className="font-semibold text-gray-950">
                                         Total
                                     </span>
 
-                                    <span className="text-xl font-bold text-gray-950">
+                                    <span className="text-xl font-bold text-amber-600">
                                         {formatPrice(subtotal)}
                                     </span>
                                 </div>
@@ -203,7 +223,10 @@ export default function CartPage() {
                         </div>
 
                         <div className="mt-7">
-                            <Link href="/checkout" className="block">
+                            <Link
+                                href="/checkout"
+                                className="block"
+                            >
                                 <Button className="w-full">
                                     Proceed to Checkout
                                 </Button>
@@ -212,7 +235,7 @@ export default function CartPage() {
 
                         <Link
                             href="/products"
-                            className="mt-4 block text-center text-sm font-semibold text-gray-600 transition hover:text-gray-950"
+                            className="mt-4 block text-center text-sm font-semibold text-amber-600 transition hover:text-amber-700"
                         >
                             Continue Shopping
                         </Link>

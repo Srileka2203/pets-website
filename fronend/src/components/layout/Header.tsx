@@ -22,7 +22,7 @@ export default function Header() {
   const { user, isLoading } = useAuth();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-gray-50/95 backdrop-blur">
+    <header className="sticky top-0 z-50 w-full border-b border-[#FF7043]/20 bg-[#FF7043]/10 backdrop-blur-md">
       <Container className="flex h-[72px] items-center justify-between">
         {/* Logo */}
         <Link
@@ -30,12 +30,16 @@ export default function Header() {
           aria-label="Pet Shop Home"
           className="flex shrink-0 items-center gap-3"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-900">
-            <span className="text-base font-bold text-white">TT</span>
+          <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-[#26C6B5]">
+            <span className="text-sm font-bold tracking-tight text-white">
+              TT
+            </span>
+
+            <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-[#FF7043]" />
           </div>
 
-          <span className="text-xl font-bold tracking-tight text-gray-900">
-            Tails & Tales
+          <span className="text-xl font-bold tracking-tight text-[#172B4D]">
+            Tails <span className="text-[#FF7043]">&</span> Tales
           </span>
         </Link>
 
@@ -48,7 +52,7 @@ export default function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"
+              className="text-sm font-medium text-[#536174] transition-colors duration-200 hover:text-[#FF7043]"
             >
               {item.name}
             </Link>
@@ -61,12 +65,12 @@ export default function Header() {
           <Link
             href="/cart"
             aria-label={`Shopping cart with ${totalQuantity} items`}
-            className="relative flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-colors duration-200 hover:bg-gray-200 hover:text-gray-900"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full text-[#536174] transition-colors duration-200 hover:bg-[#FFF1EC] hover:text-[#FF7043]"
           >
             <ShoppingCart className="h-[18px] w-[18px]" />
 
             {isCartLoaded && (
-              <span className="absolute right-0.5 top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-gray-900 px-1 text-[10px] font-semibold leading-none text-white">
+              <span className="absolute right-0.5 top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#FF7043] px-1 text-[10px] font-semibold leading-none text-white">
                 {totalQuantity}
               </span>
             )}
@@ -75,15 +79,13 @@ export default function Header() {
           {/* Account */}
           <Link
             href="/account"
-            aria-label={
-              user ? `Account for ${user.name}` : "My account"
-            }
-            className="hidden h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-colors duration-200 hover:bg-gray-200 hover:text-gray-900 sm:flex"
+            aria-label={user ? `Account for ${user.name}` : "My account"}
+            className="hidden h-10 w-10 items-center justify-center rounded-full text-[#536174] transition-colors duration-200 hover:bg-[#E8FAF7] hover:text-[#26C6B5] sm:flex"
           >
             {isLoading ? (
               <User className="h-[18px] w-[18px]" />
             ) : user ? (
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 font-quicksand text-sm font-bold text-white">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#26C6B5] font-quicksand text-sm font-bold text-white">
                 {user.name.charAt(0).toUpperCase()}
               </span>
             ) : (

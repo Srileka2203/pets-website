@@ -14,11 +14,11 @@ export default function ProductSearch({
   onChange,
 }: ProductSearchProps) {
   return (
-    <section className="border-b border-gray-100 bg-white py-8">
+    <section className="border-b border-[#FFDDE8] bg-[#FFF9FB] py-8">
       <Container>
         <div className="relative w-full lg:max-w-md">
           <Search
-            className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+            className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#26AFA1]"
             strokeWidth={1.7}
           />
 
@@ -27,8 +27,11 @@ export default function ProductSearch({
             value={value}
             onChange={(event) => onChange(event.target.value)}
             placeholder="Search products..."
-            className="h-12 w-full rounded-full border border-gray-200 bg-gray-50 pl-12 pr-5 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-gray-400 focus:bg-white"
+            className="h-12 w-full rounded-full border border-[#F7C4D5] bg-white pl-12 pr-5 text-sm text-[#263238] outline-none transition-all duration-200 placeholder:text-[#9AA3A7] hover:border-[#FFB5CB] focus:border-[#26C6B5] focus:bg-white focus:ring-2 focus:ring-[#26C6B5]/15"
           />
+
+          {/* Small decorative accent */}
+          <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-[#FFD54F]" />
         </div>
       </Container>
     </section>

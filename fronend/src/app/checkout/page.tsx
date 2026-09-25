@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ShoppingBag } from "lucide-react";
+import { ArrowLeft, ShoppingBag, CheckCircle2 } from "lucide-react";
 
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
@@ -21,13 +21,13 @@ export default function CheckoutPage() {
 
     if (cartItems.length === 0) {
         return (
-            <main className="min-h-screen bg-gray-50 py-16">
+            <main className="min-h-screen bg-amber-50/40 py-16">
                 <Container>
-                    <div className="mx-auto flex max-w-xl flex-col items-center rounded-[28px] border border-gray-200 bg-white px-6 py-16 text-center shadow-sm">
-                        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+                    <div className="mx-auto flex max-w-xl flex-col items-center rounded-[28px] border border-amber-100 bg-white px-6 py-16 text-center shadow-sm">
+                        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-amber-100">
                             <ShoppingBag
                                 size={28}
-                                className="text-gray-600"
+                                className="text-amber-600"
                                 aria-hidden="true"
                             />
                         </div>
@@ -52,13 +52,13 @@ export default function CheckoutPage() {
 
     if (isOrderPlaced) {
         return (
-            <main className="min-h-screen bg-gray-50 py-16">
+            <main className="min-h-screen bg-green-50/40 py-16">
                 <Container>
-                    <div className="mx-auto flex max-w-xl flex-col items-center rounded-[28px] border border-gray-200 bg-white px-6 py-16 text-center shadow-sm">
-                        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
-                            <ShoppingBag
-                                size={28}
-                                className="text-gray-600"
+                    <div className="mx-auto flex max-w-xl flex-col items-center rounded-[28px] border border-green-100 bg-white px-6 py-16 text-center shadow-sm">
+                        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+                            <CheckCircle2
+                                size={30}
+                                className="text-green-600"
                                 aria-hidden="true"
                             />
                         </div>
@@ -82,12 +82,12 @@ export default function CheckoutPage() {
     }
 
     return (
-        <main className="min-h-screen bg-gray-50 py-10 sm:py-14">
+        <main className="min-h-screen bg-amber-50/40 py-10 sm:py-14">
             <Container>
                 <div className="mb-8">
                     <Link
                         href="/cart"
-                        className="inline-flex items-center gap-2 font-nunito text-sm text-gray-500 transition-colors hover:text-gray-900"
+                        className="inline-flex items-center gap-2 font-nunito text-sm text-gray-500 transition-colors hover:text-amber-600"
                     >
                         <ArrowLeft size={16} aria-hidden="true" />
                         Back to Cart
@@ -162,7 +162,7 @@ export default function CheckoutPage() {
                         }}
                     >
                         {/* Customer Information */}
-                        <section className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm">
+                        <section className="rounded-[28px] border border-amber-100 bg-white p-6 shadow-sm">
                             <div>
                                 <h2 className="font-quicksand text-xl font-bold text-gray-900">
                                     Customer Information
@@ -188,7 +188,7 @@ export default function CheckoutPage() {
                                         type="text"
                                         placeholder="Enter your full name"
                                         required
-                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                        className="w-full rounded-2xl border border-gray-200 bg-amber-50/30 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-amber-400 focus:bg-white focus:ring-2 focus:ring-amber-100"
                                     />
                                 </div>
 
@@ -206,7 +206,7 @@ export default function CheckoutPage() {
                                         type="email"
                                         placeholder="Enter your email"
                                         required
-                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                        className="w-full rounded-2xl border border-gray-200 bg-amber-50/30 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-amber-400 focus:bg-white focus:ring-2 focus:ring-amber-100"
                                     />
                                 </div>
 
@@ -227,14 +227,14 @@ export default function CheckoutPage() {
                                         maxLength={10}
                                         placeholder="Enter your 10-digit phone number"
                                         required
-                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                        className="w-full rounded-2xl border border-gray-200 bg-amber-50/30 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-amber-400 focus:bg-white focus:ring-2 focus:ring-amber-100"
                                     />
                                 </div>
                             </div>
                         </section>
 
                         {/* Delivery Address */}
-                        <section className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm">
+                        <section className="rounded-[28px] border border-blue-100 bg-white p-6 shadow-sm">
                             <div>
                                 <h2 className="font-quicksand text-xl font-bold text-gray-900">
                                     Delivery Address
@@ -261,7 +261,7 @@ export default function CheckoutPage() {
                                         required
                                         rows={3}
                                         placeholder="Enter your full address"
-                                        className="w-full resize-none rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                        className="w-full resize-none rounded-2xl border border-gray-200 bg-blue-50/30 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                                     />
                                 </div>
 
@@ -279,7 +279,7 @@ export default function CheckoutPage() {
                                         type="text"
                                         required
                                         placeholder="Enter your city"
-                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                        className="w-full rounded-2xl border border-gray-200 bg-blue-50/30 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                                     />
                                 </div>
 
@@ -297,7 +297,7 @@ export default function CheckoutPage() {
                                         type="text"
                                         required
                                         placeholder="Enter your state"
-                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                        className="w-full rounded-2xl border border-gray-200 bg-blue-50/30 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                                     />
                                 </div>
 
@@ -318,7 +318,7 @@ export default function CheckoutPage() {
                                         maxLength={6}
                                         placeholder="Enter your 6-digit postal code"
                                         required
-                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                        className="w-full rounded-2xl border border-gray-200 bg-blue-50/30 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                                     />
                                 </div>
 
@@ -336,14 +336,14 @@ export default function CheckoutPage() {
                                         type="text"
                                         defaultValue="India"
                                         required
-                                        className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-gray-400 focus:bg-white"
+                                        className="w-full rounded-2xl border border-gray-200 bg-blue-50/30 px-4 py-3 font-nunito text-sm text-gray-900 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                                     />
                                 </div>
                             </div>
                         </section>
 
                         {/* Payment Method */}
-                        <section className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm">
+                        <section className="rounded-[28px] border border-purple-100 bg-white p-6 shadow-sm">
                             <div>
                                 <h2 className="font-quicksand text-xl font-bold text-gray-900">
                                     Payment Method
@@ -356,14 +356,14 @@ export default function CheckoutPage() {
                             </div>
 
                             <div className="mt-6 space-y-4">
-                                <label className="flex cursor-pointer items-start gap-4 rounded-2xl border border-gray-200 bg-gray-50 p-4 transition hover:border-gray-400">
+                                <label className="flex cursor-pointer items-start gap-4 rounded-2xl border border-green-100 bg-green-50/50 p-4 transition hover:border-green-300">
                                     <input
                                         type="radio"
                                         name="paymentMethod"
                                         value="cod"
                                         defaultChecked
                                         required
-                                        className="mt-1 h-4 w-4 accent-gray-900"
+                                        className="mt-1 h-4 w-4 accent-green-600"
                                     />
 
                                     <div>
@@ -378,12 +378,12 @@ export default function CheckoutPage() {
                                     </div>
                                 </label>
 
-                                <label className="flex cursor-pointer items-start gap-4 rounded-2xl border border-gray-200 bg-gray-50 p-4 transition hover:border-gray-400">
+                                <label className="flex cursor-pointer items-start gap-4 rounded-2xl border border-purple-100 bg-purple-50/40 p-4 transition hover:border-purple-300">
                                     <input
                                         type="radio"
                                         name="paymentMethod"
                                         value="online"
-                                        className="mt-1 h-4 w-4 accent-gray-900"
+                                        className="mt-1 h-4 w-4 accent-purple-600"
                                     />
 
                                     <div>
@@ -411,7 +411,7 @@ export default function CheckoutPage() {
                     </form>
 
                     {/* Order Summary */}
-                    <aside className="h-fit rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm lg:sticky lg:top-24">
+                    <aside className="h-fit rounded-[28px] border border-amber-200 bg-white p-6 shadow-sm lg:sticky lg:top-24">
                         <h2 className="font-quicksand text-xl font-bold text-gray-900">
                             Order Summary
                         </h2>
@@ -439,7 +439,7 @@ export default function CheckoutPage() {
                             ))}
                         </div>
 
-                        <div className="my-6 border-t border-gray-200" />
+                        <div className="my-6 border-t border-amber-100" />
 
                         <div className="space-y-3 font-nunito text-sm">
                             <div className="flex justify-between text-gray-600">
@@ -449,15 +449,16 @@ export default function CheckoutPage() {
                                 </span>
                             </div>
 
-                            <div className="flex justify-between text-gray-600">
+                            <div className="flex justify-between text-green-600">
                                 <span>Delivery</span>
                                 <span>Free</span>
                             </div>
 
-                            <div className="border-t border-gray-200 pt-4">
+                            <div className="border-t border-amber-100 pt-4">
                                 <div className="flex justify-between font-quicksand text-lg font-bold text-gray-900">
                                     <span>Total</span>
-                                    <span>
+
+                                    <span className="text-amber-600">
                                         ₹{total.toLocaleString("en-IN")}
                                     </span>
                                 </div>

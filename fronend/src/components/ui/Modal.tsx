@@ -38,16 +38,16 @@ export default function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#172B4D]/50 px-4 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className={`relative w-full max-w-lg rounded-lg bg-white shadow-lg ${className}`}
+        className={`relative w-full max-w-lg rounded-[24px] border border-[#F4D8CE] bg-white shadow-lg ${className}`}
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
+        <div className="flex items-center justify-between border-b border-[#F4D8CE] px-6 py-4">
           {title && (
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-[#172B4D]">
               {title}
             </h2>
           )}
@@ -56,7 +56,7 @@ export default function Modal({
             type="button"
             onClick={onClose}
             aria-label="Close modal"
-            className="rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300"
+            className="rounded-full p-2 text-[#68778D] transition-colors hover:bg-[#FFF0F5] hover:text-[#FF80AB] focus:outline-none focus:ring-2 focus:ring-[#FFD0DE]"
           >
             <X size={20} />
           </button>
