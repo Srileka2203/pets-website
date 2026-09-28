@@ -50,10 +50,7 @@ export default function OrderDetailsPage({
                     setOrder(foundOrder);
                 }
             } catch (error) {
-                console.error(
-                    "Failed to load order:",
-                    error
-                );
+                console.error("Failed to load order:", error);
             } finally {
                 setIsLoading(false);
             }
@@ -64,7 +61,7 @@ export default function OrderDetailsPage({
 
     if (isLoading) {
         return (
-            <main className="min-h-screen bg-gray-50 py-16">
+            <main className="min-h-screen bg-[#FFF9F6] py-16">
                 <Container>
                     <div className="flex min-h-[300px] items-center justify-center">
                         <p className="font-nunito text-sm text-gray-500">
@@ -78,13 +75,13 @@ export default function OrderDetailsPage({
 
     if (!order) {
         return (
-            <main className="min-h-screen bg-gray-50 py-16">
+            <main className="min-h-screen bg-[#FFF9F6] py-16">
                 <Container>
-                    <div className="mx-auto max-w-xl rounded-[28px] border border-gray-200 bg-white px-6 py-16 text-center shadow-sm">
-                        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+                    <div className="mx-auto max-w-xl rounded-[28px] border border-[#FFE0D5] bg-white px-6 py-16 text-center shadow-sm">
+                        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#FFF0EA]">
                             <Package
                                 size={28}
-                                className="text-gray-600"
+                                className="text-[#F4512C]"
                                 aria-hidden="true"
                             />
                         </div>
@@ -119,12 +116,12 @@ export default function OrderDetailsPage({
     });
 
     return (
-        <main className="min-h-screen bg-gray-50 py-10 sm:py-14">
+        <main className="min-h-screen bg-[#FFF9F6] py-10 sm:py-14">
             <Container>
                 {/* Back */}
                 <Link
                     href="/account/orders"
-                    className="inline-flex items-center gap-2 font-nunito text-sm text-gray-500 transition-colors hover:text-gray-900"
+                    className="inline-flex items-center gap-2 font-nunito text-sm text-gray-500 transition-colors hover:text-[#F4512C]"
                 >
                     <ArrowLeft
                         size={16}
@@ -137,7 +134,7 @@ export default function OrderDetailsPage({
                 <div className="mt-6">
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                         <div>
-                            <p className="font-nunito text-sm text-gray-500">
+                            <p className="font-nunito text-sm font-semibold text-[#26A69A]">
                                 Order Details
                             </p>
 
@@ -146,7 +143,7 @@ export default function OrderDetailsPage({
                             </h1>
                         </div>
 
-                        <div className="font-nunito text-sm text-gray-500">
+                        <div className="rounded-full bg-[#FFF3CD] px-4 py-2 font-nunito text-sm font-semibold text-[#8A6800]">
                             {formattedDate}
                         </div>
                     </div>
@@ -156,12 +153,12 @@ export default function OrderDetailsPage({
                     {/* Main content */}
                     <div className="space-y-8">
                         {/* Products */}
-                        <section className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm">
+                        <section className="rounded-[28px] border border-[#D8EFEC] bg-white p-6 shadow-sm">
                             <div className="flex items-center gap-3">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gray-100">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#E4F7F4]">
                                     <Package
                                         size={20}
-                                        className="text-gray-700"
+                                        className="text-[#26A69A]"
                                         aria-hidden="true"
                                     />
                                 </div>
@@ -174,61 +171,45 @@ export default function OrderDetailsPage({
                                     <p className="mt-1 font-nunito text-sm text-gray-500">
                                         {order.items.length}{" "}
                                         product
-                                        {order.items.length !==
-                                        1
+                                        {order.items.length !== 1
                                             ? "s"
                                             : ""}
                                     </p>
                                 </div>
                             </div>
 
-                            <div className="mt-6 divide-y divide-gray-200">
-                                {order.items.map(
-                                    (item) => (
-                                        <div
-                                            key={
-                                                item.product
-                                                    .id
-                                            }
-                                            className="flex items-start justify-between gap-5 py-5 first:pt-0 last:pb-0"
-                                        >
-                                            <div>
-                                                <h3 className="font-nunito text-sm font-semibold text-gray-900">
-                                                    {
-                                                        item
-                                                            .product
-                                                            .name
-                                                    }
-                                                </h3>
+                            <div className="mt-6 divide-y divide-gray-100">
+                                {order.items.map((item) => (
+                                    <div
+                                        key={item.product.id}
+                                        className="flex items-start justify-between gap-5 py-5 first:pt-0 last:pb-0"
+                                    >
+                                        <div>
+                                            <h3 className="font-nunito text-sm font-semibold text-gray-900">
+                                                {item.product.name}
+                                            </h3>
 
-                                                <p className="mt-1 font-nunito text-sm text-gray-500">
-                                                    Quantity:{" "}
-                                                    {
-                                                        item.quantity
-                                                    }
-                                                </p>
-                                            </div>
-
-                                            <p className="whitespace-nowrap font-nunito text-sm font-semibold text-gray-900">
-                                                {
-                                                    item
-                                                        .product
-                                                        .price
-                                                }
+                                            <p className="mt-1 font-nunito text-sm text-gray-500">
+                                                Quantity:{" "}
+                                                {item.quantity}
                                             </p>
                                         </div>
-                                    )
-                                )}
+
+                                        <p className="whitespace-nowrap font-nunito text-sm font-semibold text-[#26A69A]">
+                                            {item.product.price}
+                                        </p>
+                                    </div>
+                                ))}
                             </div>
                         </section>
 
                         {/* Customer Information */}
-                        <section className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm">
+                        <section className="rounded-[28px] border border-[#FFDDE8] bg-white p-6 shadow-sm">
                             <div className="flex items-center gap-3">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gray-100">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FFEAF1]">
                                     <User
                                         size={20}
-                                        className="text-gray-700"
+                                        className="text-[#E85D87]"
                                         aria-hidden="true"
                                     />
                                 </div>
@@ -238,18 +219,14 @@ export default function OrderDetailsPage({
                                 </h2>
                             </div>
 
-                            <div className="mt-6 space-y-3 font-nunito text-sm">
+                            <div className="mt-6 space-y-4 font-nunito text-sm">
                                 <div>
                                     <p className="text-gray-500">
                                         Full Name
                                     </p>
 
                                     <p className="mt-1 font-semibold text-gray-900">
-                                        {
-                                            order
-                                                .customer
-                                                .fullName
-                                        }
+                                        {order.customer.fullName}
                                     </p>
                                 </div>
 
@@ -259,11 +236,7 @@ export default function OrderDetailsPage({
                                     </p>
 
                                     <p className="mt-1 font-semibold text-gray-900">
-                                        {
-                                            order
-                                                .customer
-                                                .email
-                                        }
+                                        {order.customer.email}
                                     </p>
                                 </div>
 
@@ -273,23 +246,19 @@ export default function OrderDetailsPage({
                                     </p>
 
                                     <p className="mt-1 font-semibold text-gray-900">
-                                        {
-                                            order
-                                                .customer
-                                                .phone
-                                        }
+                                        {order.customer.phone}
                                     </p>
                                 </div>
                             </div>
                         </section>
 
                         {/* Delivery Address */}
-                        <section className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm">
+                        <section className="rounded-[28px] border border-[#FFE5A8] bg-white p-6 shadow-sm">
                             <div className="flex items-center gap-3">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gray-100">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FFF4CC]">
                                     <MapPin
                                         size={20}
-                                        className="text-gray-700"
+                                        className="text-[#D19B00]"
                                         aria-hidden="true"
                                     />
                                 </div>
@@ -301,48 +270,37 @@ export default function OrderDetailsPage({
 
                             <div className="mt-6 font-nunito text-sm text-gray-600">
                                 <p>
-                                    {
-                                        order
-                                            .shippingAddress
-                                            .address
-                                    }
+                                    {order.shippingAddress.address}
                                 </p>
 
                                 <p className="mt-1">
-                                    {
-                                        order
-                                            .shippingAddress
-                                            .city
-                                    }
-                                    ,{" "}
-                                    {
-                                        order
-                                            .shippingAddress
-                                            .state
-                                    }{" "}
-                                    {
-                                        order
-                                            .shippingAddress
-                                            .postalCode
-                                    }
+                                    {order.shippingAddress.city},{" "}
+                                    {order.shippingAddress.state}{" "}
+                                    {order.shippingAddress.postalCode}
                                 </p>
 
                                 <p className="mt-1">
-                                    {
-                                        order
-                                            .shippingAddress
-                                            .country
-                                    }
+                                    {order.shippingAddress.country}
                                 </p>
                             </div>
                         </section>
                     </div>
 
                     {/* Order Summary */}
-                    <aside className="h-fit rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm lg:sticky lg:top-24">
-                        <h2 className="font-quicksand text-xl font-bold text-gray-900">
-                            Order Summary
-                        </h2>
+                    <aside className="h-fit rounded-[28px] border border-[#FFDCCF] bg-white p-6 shadow-sm lg:sticky lg:top-24">
+                        <div className="flex items-center justify-between">
+                            <h2 className="font-quicksand text-xl font-bold text-gray-900">
+                                Order Summary
+                            </h2>
+
+                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FFF0EA]">
+                                <Package
+                                    size={18}
+                                    className="text-[#F4512C]"
+                                    aria-hidden="true"
+                                />
+                            </div>
+                        </div>
 
                         <div className="mt-6 space-y-4 font-nunito text-sm">
                             <div className="flex justify-between text-gray-600">
@@ -359,9 +317,8 @@ export default function OrderDetailsPage({
                             <div className="flex justify-between text-gray-600">
                                 <span>Delivery</span>
 
-                                <span>
-                                    {order.delivery ===
-                                    0
+                                <span className="font-semibold text-[#26A69A]">
+                                    {order.delivery === 0
                                         ? "Free"
                                         : `₹${order.delivery.toLocaleString(
                                               "en-IN"
@@ -373,7 +330,7 @@ export default function OrderDetailsPage({
                                 <div className="flex justify-between font-quicksand text-lg font-bold text-gray-900">
                                     <span>Total</span>
 
-                                    <span>
+                                    <span className="text-[#F4512C]">
                                         ₹
                                         {order.total.toLocaleString(
                                             "en-IN"
@@ -386,11 +343,11 @@ export default function OrderDetailsPage({
                         {/* Payment */}
                         <div className="my-6 border-t border-gray-200" />
 
-                        <div className="flex items-start gap-3">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-100">
+                        <div className="flex items-start gap-3 rounded-2xl bg-[#FFF9DF] p-4">
+                            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#FFE9A6]">
                                 <CreditCard
                                     size={18}
-                                    className="text-gray-700"
+                                    className="text-[#B88700]"
                                     aria-hidden="true"
                                 />
                             </div>
@@ -407,6 +364,12 @@ export default function OrderDetailsPage({
                                         : "Online Payment"}
                                 </p>
                             </div>
+                        </div>
+
+                        <div className="mt-5 rounded-2xl bg-[#FCEAF0] px-4 py-3">
+                            <p className="font-nunito text-xs leading-5 text-[#9B4D68]">
+                                Thank you for shopping with Tails & Tales.
+                            </p>
                         </div>
                     </aside>
                 </div>

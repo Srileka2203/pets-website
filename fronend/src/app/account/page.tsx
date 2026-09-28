@@ -51,7 +51,7 @@ export default function AccountPage() {
                 {/* Back to Home */}
                 <Link
                     href="/"
-                    className="inline-flex items-center gap-2 font-nunito text-sm text-slate-500 transition-colors hover:text-blue-600"
+                    className="inline-flex items-center gap-2 font-nunito text-sm text-slate-500 transition-colors hover:text-teal-600"
                 >
                     <ArrowLeft size={16} aria-hidden="true" />
                     Back to Home
@@ -59,7 +59,7 @@ export default function AccountPage() {
 
                 {/* Page Header */}
                 <div className="mt-6">
-                    <p className="font-nunito text-sm font-semibold uppercase tracking-[0.18em] text-blue-600">
+                    <p className="font-nunito text-sm font-semibold uppercase tracking-[0.18em] text-teal-600">
                         Account
                     </p>
 
@@ -76,10 +76,10 @@ export default function AccountPage() {
                 <section className="mt-8 rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
                     <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex items-center gap-4">
-                            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-50">
+                            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-50">
                                 <User
                                     size={24}
-                                    className="text-blue-600"
+                                    className="text-teal-600"
                                     aria-hidden="true"
                                 />
                             </div>
@@ -146,19 +146,19 @@ export default function AccountPage() {
                         href="/account/profile"
                         className="group"
                     >
-                        <div className="h-full rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-md">
+                        <div className="h-full rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-teal-200 hover:shadow-md">
                             <div className="flex items-center justify-between">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50">
                                     <User
                                         size={22}
-                                        className="text-blue-600"
+                                        className="text-teal-600"
                                         aria-hidden="true"
                                     />
                                 </div>
 
                                 <ChevronRight
                                     size={20}
-                                    className="text-slate-400 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-blue-600"
+                                    className="text-slate-400 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-teal-600"
                                     aria-hidden="true"
                                 />
                             </div>
@@ -178,19 +178,19 @@ export default function AccountPage() {
                         href="/account/addresses"
                         className="group"
                     >
-                        <div className="h-full rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-md">
+                        <div className="h-full rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-teal-200 hover:shadow-md">
                             <div className="flex items-center justify-between">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50">
                                     <MapPin
                                         size={22}
-                                        className="text-emerald-600"
+                                        className="text-teal-600"
                                         aria-hidden="true"
                                     />
                                 </div>
 
                                 <ChevronRight
                                     size={20}
-                                    className="text-slate-400 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-emerald-600"
+                                    className="text-slate-400 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-teal-600"
                                     aria-hidden="true"
                                 />
                             </div>

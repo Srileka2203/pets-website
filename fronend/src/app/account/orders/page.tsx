@@ -35,7 +35,7 @@ export default function AccountOrdersPage() {
 
     if (!isLoaded) {
         return (
-            <main className="min-h-screen bg-gray-50 py-16">
+            <main className="min-h-screen bg-[#FFF9F6] py-16">
                 <Container>
                     <div className="flex min-h-[300px] items-center justify-center">
                         <p className="font-nunito text-sm text-gray-500">
@@ -49,21 +49,21 @@ export default function AccountOrdersPage() {
 
     if (orders.length === 0) {
         return (
-            <main className="min-h-screen bg-gray-50 py-16">
+            <main className="min-h-screen bg-[#FFF9F6] py-16">
                 <Container>
                     <Link
                         href="/account"
-                        className="inline-flex items-center gap-2 font-nunito text-sm text-gray-500 transition-colors hover:text-gray-900"
+                        className="inline-flex items-center gap-2 font-nunito text-sm text-gray-500 transition-colors hover:text-[#FF7043]"
                     >
                         <ArrowLeft size={16} aria-hidden="true" />
                         Back to Account
                     </Link>
 
-                    <div className="mx-auto mt-8 flex max-w-xl flex-col items-center rounded-[28px] border border-gray-200 bg-white px-6 py-16 text-center shadow-sm">
-                        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+                    <div className="mx-auto mt-8 flex max-w-xl flex-col items-center rounded-[28px] border border-[#FFE0D5] bg-white px-6 py-16 text-center shadow-sm">
+                        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#FFF0EA]">
                             <ShoppingBag
                                 size={28}
-                                className="text-gray-600"
+                                className="text-[#FF7043]"
                                 aria-hidden="true"
                             />
                         </div>
@@ -86,18 +86,22 @@ export default function AccountOrdersPage() {
     }
 
     return (
-        <main className="min-h-screen bg-gray-50 py-10 sm:py-14">
+        <main className="min-h-screen bg-[#FFF9F6] py-10 sm:py-14">
             <Container>
                 <Link
                     href="/account"
-                    className="inline-flex items-center gap-2 font-nunito text-sm text-gray-500 transition-colors hover:text-gray-900"
+                    className="inline-flex items-center gap-2 font-nunito text-sm text-gray-500 transition-colors hover:text-[#FF7043]"
                 >
                     <ArrowLeft size={16} aria-hidden="true" />
                     Back to Account
                 </Link>
 
                 <div className="mt-6">
-                    <h1 className="font-quicksand text-3xl font-bold text-gray-900 sm:text-4xl">
+                    <p className="font-nunito text-sm font-semibold uppercase tracking-[0.18em] text-[#26A6A1]">
+                        Account
+                    </p>
+
+                    <h1 className="mt-2 font-quicksand text-3xl font-bold text-gray-900 sm:text-4xl">
                         My Orders
                     </h1>
 
@@ -107,17 +111,23 @@ export default function AccountOrdersPage() {
                 </div>
 
                 <div className="mt-8 space-y-5">
-                    {orders.map((order) => (
+                    {orders.map((order, index) => (
                         <article
                             key={order.id}
-                            className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm"
+                            className={`rounded-[28px] border bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${
+                                index % 3 === 0
+                                    ? "border-[#FFE0D5]"
+                                    : index % 3 === 1
+                                    ? "border-[#D6F3F0]"
+                                    : "border-[#FFE9A8]"
+                            }`}
                         >
                             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                                 <div className="flex items-start gap-4">
-                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gray-100">
+                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#E8F8F6]">
                                         <Package
                                             size={22}
-                                            className="text-gray-700"
+                                            className="text-[#26A6A1]"
                                             aria-hidden="true"
                                         />
                                     </div>
@@ -145,7 +155,7 @@ export default function AccountOrdersPage() {
                                         Total
                                     </p>
 
-                                    <p className="mt-1 font-quicksand text-xl font-bold text-gray-900">
+                                    <p className="mt-1 font-quicksand text-xl font-bold text-[#FF7043]">
                                         ₹
                                         {order.total.toLocaleString(
                                             "en-IN"
@@ -154,7 +164,7 @@ export default function AccountOrdersPage() {
                                 </div>
                             </div>
 
-                            <div className="my-6 border-t border-gray-200" />
+                            <div className="my-6 border-t border-gray-100" />
 
                             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                                 <div className="font-nunito text-sm">

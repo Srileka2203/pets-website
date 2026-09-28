@@ -1,6 +1,11 @@
 import Link from "next/link";
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+} from "react-icons/fa";
 import { Mail, Phone, MapPin } from "lucide-react";
+
 import Container from "@/components/ui/Container";
 
 const shopLinks = [
@@ -26,10 +31,11 @@ const supportLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#FFD6C9] bg-[#FFF8F5] text-[#536174]">
+    <footer className="border-t border-[#FF8A65] bg-[#FF7043] text-white">
       {/* Main Footer */}
       <Container className="py-14">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+
           {/* Brand */}
           <div className="lg:pr-8">
             <Link
@@ -37,20 +43,22 @@ export default function Footer() {
               className="mb-5 flex items-center gap-3"
               aria-label="Pet Shop Home"
             >
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-[#26C6B5]">
-                <span className="text-sm font-bold text-white">TT</span>
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white">
+                <span className="text-sm font-bold text-[#FF7043]">
+                  TT
+                </span>
 
-                <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-[#FF7043]" />
+                <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-[#FFD54F]" />
               </div>
 
-              <span className="text-xl font-bold tracking-tight text-[#172B4D]">
-                Tails <span className="text-[#FF7043]">&</span> Tales
+              <span className="text-xl font-bold tracking-tight text-white">
+                Tails <span className="text-[#FFD54F]">&</span> Tales
               </span>
             </Link>
 
-            <p className="max-w-sm text-sm leading-6 text-[#68778D]">
-              Your trusted destination for pets, quality pet products, and
-              reliable pet care services.
+            <p className="max-w-sm text-sm leading-6 text-orange-50">
+              Your trusted destination for pets, quality pet products,
+              and reliable pet care services.
             </p>
 
             {/* Social Links */}
@@ -58,7 +66,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Facebook"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-[#BFEDE7] bg-white text-[#26C6B5] transition-colors hover:border-[#26C6B5] hover:bg-[#26C6B5] hover:text-white"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-orange-200 bg-white text-[#26C6B5] transition-colors hover:border-white hover:bg-[#26C6B5] hover:text-white"
               >
                 <FaFacebookF className="h-4 w-4" />
               </a>
@@ -66,7 +74,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Instagram"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-[#FFD0DE] bg-white text-[#FF80AB] transition-colors hover:border-[#FF80AB] hover:bg-[#FF80AB] hover:text-white"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-orange-200 bg-white text-[#FF80AB] transition-colors hover:border-white hover:bg-[#FF80AB] hover:text-white"
               >
                 <FaInstagram className="h-4 w-4" />
               </a>
@@ -74,7 +82,7 @@ export default function Footer() {
               <a
                 href="#"
                 aria-label="Twitter"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-[#FFDFA0] bg-white text-[#D9A800] transition-colors hover:border-[#FFD54F] hover:bg-[#FFD54F] hover:text-[#172B4D]"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-orange-200 bg-white text-[#D9A800] transition-colors hover:border-white hover:bg-[#FFD54F] hover:text-[#172B4D]"
               >
                 <FaTwitter className="h-4 w-4" />
               </a>
@@ -83,7 +91,7 @@ export default function Footer() {
 
           {/* Shop */}
           <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-[#172B4D]">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-white">
               Shop
             </h2>
 
@@ -92,7 +100,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-[#68778D] transition-colors hover:text-[#FF7043]"
+                    className="text-sm text-orange-50 transition-colors hover:text-[#FFD54F]"
                   >
                     {link.name}
                   </Link>
@@ -103,7 +111,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-[#172B4D]">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-white">
               Company
             </h2>
 
@@ -112,7 +120,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-[#68778D] transition-colors hover:text-[#26C6B5]"
+                    className="text-sm text-orange-50 transition-colors hover:text-[#26C6B5]"
                   >
                     {link.name}
                   </Link>
@@ -123,7 +131,7 @@ export default function Footer() {
 
           {/* Support & Contact */}
           <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-[#172B4D]">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-white">
               Support
             </h2>
 
@@ -132,7 +140,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-[#68778D] transition-colors hover:text-[#FF7043]"
+                    className="text-sm text-orange-50 transition-colors hover:text-[#FFD54F]"
                   >
                     {link.name}
                   </Link>
@@ -141,11 +149,11 @@ export default function Footer() {
             </ul>
 
             {/* Contact Information */}
-            <div className="mt-6 space-y-3 border-t border-[#F4D8CE] pt-5">
+            <div className="mt-6 space-y-3 border-t border-orange-300/50 pt-5">
               <div className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#FF7043]" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#FFD54F]" />
 
-                <span className="text-sm leading-5 text-[#68778D]">
+                <span className="text-sm leading-5 text-orange-50">
                   Your City, India
                 </span>
               </div>
@@ -155,7 +163,7 @@ export default function Footer() {
 
                 <a
                   href="tel:+910000000000"
-                  className="text-sm text-[#68778D] transition-colors hover:text-[#26C6B5]"
+                  className="text-sm text-orange-50 transition-colors hover:text-white"
                 >
                   +91 00000 00000
                 </a>
@@ -166,7 +174,7 @@ export default function Footer() {
 
                 <a
                   href="mailto:hello@petshop.com"
-                  className="text-sm text-[#68778D] transition-colors hover:text-[#FF80AB]"
+                  className="text-sm text-orange-50 transition-colors hover:text-white"
                 >
                   hello@petshop.com
                 </a>
@@ -177,15 +185,16 @@ export default function Footer() {
       </Container>
 
       {/* Bottom Footer */}
-      <div className="border-t border-[#F4D8CE] bg-white/60">
+      <div className="border-t border-orange-300/50 bg-[#E85D32]">
         <Container className="flex flex-col items-center justify-between gap-3 py-5 text-center md:flex-row md:text-left">
-          <p className="text-sm text-[#7A8798]">
+          <p className="text-sm text-orange-50">
             © {new Date().getFullYear()} Tails & Tales. All rights reserved.
           </p>
 
-          <p className="text-sm text-[#7A8798]">
-            Made with <span className="text-[#FF80AB]">♥</span> for pets and
-            their families.
+          <p className="text-sm text-orange-50">
+            Made with{" "}
+            <span className="text-[#FFD54F]">♥</span>{" "}
+            for pets and their families.
           </p>
         </Container>
       </div>
